@@ -1,0 +1,180 @@
+/* IMPERIAL RED #ed2939 */
+
+html, body {
+    margin: 0px;
+}
+
+.content-login, .content {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+
+/* LOGIN CONTENT */
+#login-box {
+    width: 400px;
+    height: 600px;
+    position: relative;
+    top: 5%;
+    display: flex;
+    flex-direction: column;
+}
+
+#login-header, #signup-header {
+    width: 100%;
+    text-align: center;
+    padding: 15px 0px;
+    display: flex;
+    justify-content: center;
+    height: 100px;
+}
+
+#login-content {
+    margin-top: 5%;
+}
+
+#login-content, #login-content > form {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.input {
+    display: block;
+    margin: 10px;
+    height: 50px;
+    font-size: 24px;
+}
+
+input[type="password"]:focus, input[type="text"]:focus {
+    outline-color: #ed2939;
+}
+
+input[type="submit"], button.input  {
+    margin-top: 15px; 
+    height: 40px;
+    font-size: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.24);
+    background-color: white;
+    border:none;
+    transition: all .5s ease;
+    cursor: pointer;
+    padding: 0px;
+}
+
+input[type="submit"]:hover, button.input:hover {
+    outline: none;
+    background-color: #ed2939;
+    color: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.24), 0 2px 4px rgba(0,0,0,0.24);
+}
+
+input[type="submit"]:focus {
+    outline: none;
+}
+
+a.fake-button {
+    display: block;
+    color: black;
+    text-decoration: none;
+    transition: all .5s ease;
+}
+
+a.fake-button:hover {
+    color: white;
+}
+
+label {
+    margin-left: .7rem;
+}
+
+.image-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+img {
+    width: 200px;
+    height: 200px;
+}
+
+/* SIGN UP CONTENT */
+
+#signup-form {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+#signup-header {
+    margin-bottom: 20px;
+}
+
+#signup-header > h1 {
+    font-size: 4rem;
+}
+
+.form-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-small {
+    display: block;
+    margin: 10px;
+    font-size: 20px;
+}
+
+.profile-img-wrapper {
+    right: 0px;
+    display: inline-block;
+    margin: 20px 20px 20px 20px;
+    background-color: white;
+    border: 1px solid black;
+}
+
+#signup-box {
+    top: 5%;
+    /* background-color: red; */
+    width: 60%;
+    height: 500px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+#signup-main {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#submit-button-form {
+    display: flex;
+    justify-content: center;
+}
+
+.submit-wrapper {
+    align-self: flex-end;
+    display: inline-block;
+}
+
+.submit-wrapper > input {
+    width: 220px;
+}
+
+.form-column > input[type="submit"] {
+    margin-top: 10px;
+}
+
+label[for="submit"] {
+    margin-bottom: 5px;
+}
+
+
+
+
+
