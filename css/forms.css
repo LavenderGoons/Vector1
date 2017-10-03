@@ -79,6 +79,7 @@ a.fake-button {
     color: black;
     text-decoration: none;
     transition: all .5s ease;
+    height: 35px; /* The a tag doesn't full the button completely */
 }
 
 a.fake-button:hover {
@@ -137,7 +138,7 @@ img {
 #signup-box {
     top: 5%;
     /* background-color: red; */
-    width: 60%;
+    width: 45%;
     height: 500px;
     position: relative;
     display: flex;
