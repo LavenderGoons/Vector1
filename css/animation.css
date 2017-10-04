@@ -1,4 +1,4 @@
-.login-title {
+.glitch-title {
     display: inline;
     position: absolute;
     font-size: 4rem;
@@ -21,6 +21,12 @@
     /* color: #00C9FF; */
     color: #009EC1;
     animation: glitch3 3s linear infinite;
+}
+
+.chinese-title {
+  /* color: #104955; */
+  color: black;
+  opacity: .7;
 }
 
 @keyframes glitch1 {

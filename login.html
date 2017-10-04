@@ -24,9 +24,28 @@
     <div class="content-login">
         <div id="login-box">
             <div id="login-header">
-                <h1 id="title1" class="login-title">Login</h1>
-                <h1 id="title2" class="login-title">Login</h1>
-                <h1 id="title3" class="login-title">Login</h1>
+                <h1 id="title1" class="glitch-title">Login</h1>
+                <h1 id="title2" class="glitch-title">Login</h1>
+                <h1 id="title3" class="glitch-title">Login</h1>
+                <script>
+                    var charCounter = 0;
+                    window.setInterval(function(){
+                        charCounter++;
+                        if (charCounter % 8 == 0) {
+                            // var title1 = document.getElementById('title1');
+                            // title1.innerHTML = '登录';
+                            // title1.classList.add('chinese-title');
+                            document.getElementById('title2').innerHTML = '登录';
+                            document.getElementById('title3').innerHTML = '登录';
+                        } else if (document.getElementById('title2').innerHTML != 'Login') {
+                            var title1 = document.getElementById('title1');
+                            title1.innerHTML = 'Login';
+                            title1.classList.remove('chinese-title');
+                            document.getElementById('title2').innerHTML = 'Login';
+                            document.getElementById('title3').innerHTML = 'Login';
+                        }
+                    }, 500);
+                </script>
             </div>
             <div id="login-content">
                 <form action="">

@@ -29,6 +29,10 @@ html, body {
     height: 100px;
 }
 
+#login-header > h1, #signup-header > h1 {
+    font-family: "Segoe UI", "Microsoft YaHei", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
 #login-content {
     margin-top: 5%;
 }
