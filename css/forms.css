@@ -137,6 +137,7 @@ img {
     margin: 20px 20px 20px 20px;
     background-color: white;
     border: 1px solid black;
+    align-self: flex-end;
 }
 
 #signup-box {
@@ -179,7 +180,14 @@ label[for="submit"] {
     margin-bottom: 5px;
 }
 
+@media screen and (max-width: 1110px) {
+    #signup-box {
+        width: 65%;
+    }
+}
 
-
-
-
+@media screen and (max-width: 775px) {
+    #signup-box {
+        width: 250px;
+    }
+}
