@@ -14,7 +14,7 @@ body {
 }
 
 #sidebar {
-    width: 225px;
+    width: 85%;
     height: 750px;
     top: 5%;
     background-color: white;
@@ -65,12 +65,33 @@ body {
     box-shadow: 0 2px 4px rgba(0,0,0,0.24), 0 2px 4px rgba(0,0,0,0.24);
 }
 
+#top-nav {
+    background-color: #ed2939;
+    display: none;
+}
+
+/* a#user-ref {
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+    padding: 5px 0px;
+} */
+
+div#user-ref {
+    color: white;
+    font-size: 20px;
+    padding: 5px 0px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
 /* MAIN CONTENT */
 
 #content {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: center;
     height: 100vh;
     width: 85%;
     right: 0px;
@@ -84,10 +105,12 @@ body {
 .column {
     display: flex;
     flex-direction: column;
+    width: 50%;
     /* background-color: orange; */
-    width: 49%;
-    height: 100%
+    padding: 10px;
 }
+
+
 
 section {
     background-color: white;
@@ -95,10 +118,78 @@ section {
     height: 200px;
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
     display: inline-block;
+    margin-bottom: 15px;
 }
 
-@media (max-width: 1200px) {
-    .column {
-      width: 90%;
+
+
+@media (max-width: 1225px) {
+    #sidebar-wrapper {
+        display: none;
+        width: 0px;
+        visibility: hidden;
     }
-  }
+
+    #content {
+        width: 100%;
+        justify-content: center;
+        margin-top: 65px;
+    }
+
+    .column {
+        width: 90%;
+        padding: 0px;
+    }
+
+    #top-nav {
+        display: flex;
+    }
+}
+
+@media (min-width:1225px) {
+    #top-nav {
+        -ms-flex-direction: row;
+            flex-direction: row;
+        -ms-flex-wrap: nowrap;
+            flex-wrap: nowrap;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+      }
+      #top-nav .navbar-nav {
+        -ms-flex-direction: row;
+            flex-direction: row;
+      }
+      #top-nav .navbar-nav .dropdown-menu {
+        position: absolute;
+      }
+      #top-nav .navbar-nav .dropdown-menu-right {
+        right: 0;
+        left: auto;
+      }
+      #top-nav .navbar-nav .nav-link {
+        padding-right: .5rem;
+        padding-left: .5rem;
+      }
+      #top-nav > .container,
+      #top-nav > .container-fluid {
+        -ms-flex-wrap: nowrap;
+            flex-wrap: nowrap;
+      }
+      #top-nav .navbar-collapse {
+        display: -ms-flexbox !important;
+        display: flex !important;
+      }
+      #top-nav .navbar-toggler {
+        display: none;
+      }
+}
+
+@media (max-width: 1050px) { 
+    #content {
+        padding: 15px;
+    }
+
+    .column {
+        width: 95%;
+    }
+}
