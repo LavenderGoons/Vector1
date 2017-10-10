@@ -48,7 +48,7 @@ html, body {
     display: block;
     margin: 10px;
     height: 50px;
-    font-size: 24px;
+    font-size: 1.5rem;
 }
 
 input[type="password"]:focus, input[type="text"]:focus {
@@ -58,11 +58,11 @@ input[type="password"]:focus, input[type="text"]:focus {
 input[type="submit"], button.input  {
     margin-top: 15px; 
     height: 40px;
-    font-size: 20px;
+    font-size: 1.25rem;
     box-shadow: 0 2px 4px rgba(0,0,0,0.24);
     background-color: white;
     border:none;
-    transition: all .5s ease;
+    transition: all .25s ease;
     cursor: pointer;
     padding: 0px;
 }
@@ -82,7 +82,7 @@ a.fake-button {
     display: block;
     color: black;
     text-decoration: none;
-    transition: all .5s ease;
+    transition: all .25s ease;
     height: 35px; /* The a tag doesn't full the button completely */
 }
 
@@ -128,7 +128,7 @@ img {
 .input-small {
     display: block;
     margin: 10px;
-    font-size: 20px;
+    font-size: 1.25rem;
 }
 
 .profile-img-wrapper {
