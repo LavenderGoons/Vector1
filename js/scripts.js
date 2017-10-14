@@ -5,6 +5,8 @@ $(function(){
     });
     $('#new-topic-btn, #blanket').click(function () {
        $('#blanket').toggle();
-       $('.new-topic-modal').toggle(); 
+       $('.new-topic-modal').toggle();
+       $('#new-topic-title').val('');
+       $('#new-topic-content').val('');
     });
 });
