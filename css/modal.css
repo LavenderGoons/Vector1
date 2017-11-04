@@ -1,0 +1,91 @@
+/* TOPIC MODAL */
+
+#blanket {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(78, 78, 78, 0.8);
+    position: absolute;
+    top:0px;
+    left:0px;
+    display: none;
+    z-index:500;
+}
+
+.form-modal {
+    position: absolute;
+    width: 75%;
+    height: 700px;
+    top: 10%;
+    left: 12.5%;
+    z-index:501;
+    background-color: white;
+    padding: 10px;
+    display: none;
+}
+
+#image-url-modal {
+    height: 200px;
+}
+
+.form-modal > form {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.form-modal input, 
+.form-modal textarea, 
+.form-modal select  {
+    display: block;
+    margin: .7rem;
+    height: 50px;
+    font-size: 1.5rem;
+}
+
+.form-modal input, 
+.form-modal textarea, 
+.form-modal select {
+    outline-color: #ed2939;
+}
+
+.form-modal select {
+    font-size: 1rem;
+}
+
+.form-modal select > option:hover {
+    background: #ed2939;
+}
+
+.form-modal textarea {
+    min-height: 350px;
+    max-height: 350px;
+    font-size: 1rem;
+}
+
+.form-modal input[type="submit"] {
+    margin-top: 15px; 
+    height: 40px;
+    font-size: 1.25rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.24);
+    background-color: white;
+    border:none;
+    transition: all .25s ease;
+    cursor: pointer;
+    padding: 0px;
+}
+
+.form-modal input[type="submit"]:hover {
+    outline: none;
+    background-color: #ed2939;
+    color: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.24), 0 2px 4px rgba(0,0,0,0.24);
+}
+
+.form-modal input[type="submit"]:focus {
+    outline: none;
+}
+
+.form-modal label {
+    margin-left: .7rem;
+}
