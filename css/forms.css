@@ -13,7 +13,7 @@ html, body {
 /* LOGIN CONTENT */
 #login-box {
     width: 400px;
-    height: 600px;
+    height: 725px;
     position: relative;
     top: 5%;
     display: flex;
@@ -192,8 +192,13 @@ label[for="submit"] {
     color: #ed2939;
 }
 
-#signup-error {
+#signup-error, #login-error {
     font-size:1.25rem;
+}
+
+#login-error {
+    margin: 0px;
+    text-align: center;
 }
 
 @media screen and (max-width: 1110px) {

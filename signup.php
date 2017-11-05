@@ -97,15 +97,15 @@
 				<form action="" method="post" id="signup-form">
 					<div class="form-column">
                         <label for="username">Username</label>
-                        <input type="text" name="username" id="username-input" class="input-small"></input>
+                        <input type="text" name="username" id="username-input" class="input-small" maxlength="20"></input>
                         <?php if(!empty($user_error)){echo '<span id="user-error" class="input-error">Please Enter Username</span>';}?>
 
                         <label for="first-name">First Name</label>
-                        <input type="text" name="first_name" id="first-name-input" class="input-small"></input>
+                        <input type="text" name="first_name" id="first-name-input" class="input-small" maxlength="30"></input>
                         <?php if(!empty($first_name_error)){echo '<span id="first-name-error" class="input-error">Please Enter First Name</span>';}?>
 
                         <label for="last-name">Last Name</label>
-                        <input type="text" name="last_name" id="last-name-input" class="input-small"></input>
+                        <input type="text" name="last_name" id="last-name-input" class="input-small" maxlength="40"></input>
                         <?php if(!empty($last_name_error)){echo '<span id="last-name-error" class="input-error">Please Enter Last Name</span>';}?>
 					</div>
 					<div class="form-column">
@@ -114,9 +114,9 @@
                         <?php if(!empty($pass_error)){echo '<span id="password-error" class="input-error">Please Enter Password</span>';}?>
                         
                         <label for="email">Email</label>
-                        <input type="email" name="email" id="email-input" class="input-small"></input>
+                        <input type="email" name="email" id="email-input" class="input-small" maxlength="50"></input>
                         <?php if(!empty($email_error)){echo '<span id="email-error" class="input-error">Please Enter Email</span>';}?>
-                        <input type="hidden" id="image_url" name="image_url"></input>
+                        <input type="hidden" id="image_url" name="image_url" value="img/skull_icon.png" maxlength="120"></input>
                         
                         <label for="submit">&nbsp;</label>
                         <input type='submit' name='submit' value="Sign Up" class="input-small"></input>

@@ -8,6 +8,8 @@
             if($result) {
                 $_SESSION['username'] = $username;
                 header('location: login.php');
+            } else {
+                return 'Database Error';
             }
         } else {
             return 'User With This Name Already Exists';
@@ -22,6 +24,25 @@
             return true;
         } else {
             return false;
+        }
+    }
+
+    function login($username, $password, $email) {
+        global $conn;
+        $sql = "select password from users where username = '$username' and email = '$email';";
+        $result = mysqli_query($conn, $sql);
+        $row = mysqli_fetch_assoc($result);
+
+        if(mysqli_num_rows($result) == 1) {
+            $hash = $row['password'];
+            if(password_verify($password, $hash)) {
+                $_SESSION['username'] = $username;
+                header("location: index.php");
+            } else {
+                return "Login Information Incorrect";
+            }
+        } else {
+            return "User Does Not Exist";
         }
     }
 ?> 

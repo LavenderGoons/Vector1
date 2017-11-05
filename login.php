@@ -1,21 +1,34 @@
 <?php 
-    require('config.php');
+    require('operations.php');
+    //TODO Move Session start maybe?
     session_start();
 
-    if($_SERVER['REQUEST_METHOD'] == "POST"){
+    $login_error = '';
+    $username = $password = $email = '';
+    $user_error = $pass_error = $email_error = '';
+
+    if(isset($_SESSION['username'])) {
+        $username = $_SESSION['username'];
+    }
+
+    if($_SERVER['REQUEST_METHOD'] == "POST") {
         $username = mysqli_real_escape_string($conn, $_POST['username']);
         $password = mysqli_real_escape_string($conn, $_POST['password']);
+        $email = mysqli_real_escape_string($conn, $_POST['email']);
 
-        $sql = "select id from users where username = '$username' and password = '$password';";
-        $result = mysqli_query($conn, $sql);
-        $row = mysqli_fetch_assoc($result);
-        if(mysqli_num_rows($result) == 1) {
-            $_SESSION['username'] = $username;
-            header("location: index.php");
-        } else {
-            $error = "Error Loginning In.";
+        if(empty($username)) {
+            $user_error = 'Please Enter A Username';
+        }
+        if(empty($password)) {
+            $pass_error = 'Please Enter A Password';
+        }
+        if(empty($email)) {
+            $email_error = 'Please Enter A Email';
         }
 
+        if(empty($user_error) && empty($pass_error) && empty($email_error)) {
+            $login_error = login($username, $password, $email);
+        }
     }
 ?>
 <!DOCTYPE html>
@@ -68,14 +81,29 @@
                 </script>
             </div>
             <div id="login-content">
-                <form action="" method="">
+                <form action="" method="post">
                     <label for="username">Username</label>
-                    <input type="text" name="username" id="username-input" class="input"></input>
+                    <input type="text" name="username" id="username-input" class="input" maxlength="20" <?php if(!empty($username)){echo "value='$username'";} ?>></input>
+                    <?php if(!empty($user_error)){echo '<span id="user-error" class="input-error">Please Enter Username</span>';}?>
+
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email-input" class="input" maxlength="50"></input>
+                    <?php if(!empty($email_error)){echo '<span id="email-error" class="input-error">Please Enter Email</span>';}?>
+
                     <label for="password">Password</label>
                     <input type="password" name="password" id="password-input" class="input"></input>
+                    <?php if(!empty($pass_error)){echo '<span id="password-error" class="input-error">Please Enter Password</span>';}?>
+
                     <input type='submit' name='submit' value="Login" class="input"></input>
                     <button type='button' name='signup' class="input"><a class='fake-button' href="signup.php">Sign Up</a></button>
                 </form>
+                <?php
+                //display error when logging in
+                global $login_error;
+                if(!empty($login_error)) {
+                    echo '<span class="input-error" id="login-error">'. $login_error .'</span>';
+                }
+                ?>
             </div>
             <div class="image-wrapper">
                 <img src="img/skull_icon.png">
