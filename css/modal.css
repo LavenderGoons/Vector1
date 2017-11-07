@@ -1,6 +1,6 @@
 /* TOPIC MODAL */
 
-#blanket {
+.blanket {
     width: 100vw;
     height: 100vh;
     background-color: rgba(78, 78, 78, 0.8);
@@ -14,17 +14,14 @@
 .form-modal {
     position: absolute;
     width: 75%;
-    height: 700px;
+    margin-top: 25px; 
     top: 10%;
     left: 12.5%;
     z-index:501;
     background-color: white;
     padding: 10px;
     display: none;
-}
-
-#image-url-modal {
-    height: 200px;
+    flex-direction: column;
 }
 
 .form-modal > form {
@@ -38,9 +35,8 @@
 .form-modal textarea, 
 .form-modal select  {
     display: block;
-    margin: .7rem;
-    height: 50px;
-    font-size: 1.5rem;
+    margin: 0rem .7rem 0rem .7rem;
+    font-size: 1rem;
 }
 
 .form-modal input, 
@@ -51,6 +47,7 @@
 
 .form-modal select {
     font-size: 1rem;
+    height: 30px;
 }
 
 .form-modal select > option:hover {
@@ -58,13 +55,14 @@
 }
 
 .form-modal textarea {
-    min-height: 350px;
-    max-height: 350px;
+    min-height: 75px;
+    max-height: 250px;
     font-size: 1rem;
 }
 
 .form-modal input[type="submit"] {
-    margin-top: 15px; 
+    margin-top: 15px;
+    margin-bottom: 15px;
     height: 40px;
     font-size: 1.25rem;
     box-shadow: 0 2px 4px rgba(0,0,0,0.24);
@@ -87,5 +85,5 @@
 }
 
 .form-modal label {
-    margin-left: .7rem;
+    margin: .7rem;
 }

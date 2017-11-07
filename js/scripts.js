@@ -4,16 +4,27 @@ $(function(){
         var preview = $(this).find('.preview-content');
         preview.toggle();
     });
+
     //Display new topic modal
-    $('#new-topic-btn, #blanket').click(function () {
-       $('#blanket').toggle();
-       $('.form-modal').toggle();
-       $('#new-topic-title').val('');
-       $('#new-topic-content').val('');
+    $('#new-topic-btn, #post-blanket').click(function () {
+        $('#post-blanket').toggle();
+    //    $('.form-modal').css('display','inline-flex');
+        $('.form-modal').toggle();
+        $('#new-topic-title').val('');
+        $('#new-topic-content').val('');
     });
+
+    $('#new-comment-btn, #comment-blanket').click(function () {
+        $('#comment-blanket').toggle();
+        // $('#comment-modal').css('display','inline-flex');
+        $('.form-modal').toggle();
+        $('#new-comment-title').val('');
+     });
+
     //Display the image url modal
-    $('.profile-img-wrapper').click(function(){
-        $('#blanket').toggle();
+    $('.profile-img-wrapper, #profile-image-blanket').click(function(){
+        $('.blanket').toggle();
+        // $('.form-modal').css('display','inline-flex');
         $('.form-modal').toggle();
     });
     //Get url from modal and update img/form input

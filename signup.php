@@ -132,7 +132,7 @@
 			</div>
         </div>
     </div>
-    <div id="blanket"></div>
+    <div id="profile-image-blanket" class="blanket"></div>
     <div class="form-modal" id="image-url-modal">
         <form action="#" method="post">
             <label for="image">Image URL</label>
