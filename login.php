@@ -1,7 +1,7 @@
 <?php 
-    require('operations.php');
+    require('include/operations.php');
     //TODO Move Session start maybe?
-    session_start();
+    //session_start();
 
     $login_error = '';
     $username = $password = $email = '';
@@ -37,18 +37,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="css/bootstrap.css"/>
-    <link rel="stylesheet" href="css/bootstrap-grid.css"/>
-    <link rel="stylesheet" href="css/forms.css"/>
-    <link rel="stylesheet" href="css/animation.css"/>
-    <link rel="stylesheet" href="css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="./css/bootstrap.css"/>
+    <link rel="stylesheet" href="./css/bootstrap-grid.css"/>
+    <link rel="stylesheet" href="./css/forms.css"/>
+    <link rel="stylesheet" href="./css/animation.css"/>
+    <link rel="stylesheet" href="./css/font-awesome.min.css"/>
     
-    <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
-    <link rel="icon" type="image/x-icon" href="img/favicons/favicon.ico">
-    <link rel="manifest" href="img/manifest.json">
-    <link rel="mask-icon" href="img/safari-pinned-tab.svg" color="#1976D2">
+    <link rel="apple-touch-icon" sizes="180x180" href="./img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./img/favicon-16x16.png">
+    <link rel="icon" type="image/x-icon" href="./img/favicons/favicon.ico">
+    <link rel="manifest" href="./img/manifest.json">
+    <link rel="mask-icon" href="./img/safari-pinned-tab.svg" color="#1976D2">
     <meta name="theme-color" content="#ffffff">
     
     <title>Login</title>

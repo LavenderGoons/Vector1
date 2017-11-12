@@ -18,7 +18,7 @@
     <link rel="manifest" href="img/manifest.json">
     <link rel="mask-icon" href="img/safari-pinned-tab.svg" color="#1976D2">
     <meta name="theme-color" content="#ffffff">
-    <title>Home</title>
+    <title>Forum Post</title>
 </head>
 <body>
     <nav id="top-nav" class="navbar navbar-dark fixed-top">
@@ -49,7 +49,7 @@
         <div id="sidebar">
                 <div id="sidebar-header">
                     <img src="img/skull_icon.png" width="80px" height="80px" alt="" id="sidebar-img">
-                    <span>WWWWWWWWWWWWWWWWWWWW</span>
+                    <h3>Username</h3>
                 </div>
                 <div id="sidebar-content">
                     <ul id="sidebar-nav">
@@ -67,33 +67,9 @@
     </div>
     <div id="content">
         <div id="content-header">
-            <button id="new-topic-btn">New</button>
+            <button id="new-comment-btn">Reply</button>
         </div>
-        <section class="forum-section">
-            <div class="forum-header">
-                    <img src="img/skull_icon.png" width="70px" height="70px" alt="">
-            </div>
-            <div class="forum-main">
-                <div class="title-wrapper">
-                    <h4>It takes dough to make bread, we workin' with cement tryn' to make bricks. Choose the sword.</h4>
-                </div>
-                <div class="info-wrapper">
-                    <span class="post-user">Username</span>
-                    <span class="post-date">YYYY-MM-DD HH24:MI:SS</span>
-                </div>
-            </div>
-            <div class="preview-content">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sed iaculis urna, a lacinia ex. Suspendisse elementum urna augue, 
-                    sit amet dictum libero pulvinar vitae. Maecenas cursus leo non nunc mattis lacinia. Donec ac mauris nunc. 
-                    Etiam mattis dui eu sapien fringilla mollis. Fusce ut massa lacus. Suspendisse nec auctor ex. 
-                    Cras ac quam faucibus, suscipit urna sit amet, commodo nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; 
-                    Etiam fringilla aliquet lorem, nec blandit nulla. Maecenas sollicitudin est in metus consequat, vitae suscipit elit placerat. 
-                    Mauris tincidunt elit at imperdiet malesuada. Aenean aliquam scelerisque purus, vitae scelerisque odio tempor et. 
-                    Vivamus consectetur eu ante ut viverra. Donec odio eros, auctor a porta eu, condimentum quis elit.
-                </p>
-            </div>
-        </section>
-        <section class="forum-section">
+        <section class="forum-section no-cursor">
             <div class="forum-header">
                 <img src="img/skull_icon.png" width="70px" height="70px" alt="">
             </div>
@@ -103,10 +79,11 @@
                 </div>
                 <div class="info-wrapper">
                     <span class="post-user">Username</span>
+                    <span class="post-category">Wasteland</span>
                     <span class="post-date">YYYY-MM-DD HH24:MI:SS</span>
                 </div>
             </div>
-            <div class="preview-content">
+            <div class="post-content">
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sed iaculis urna, a lacinia ex. Suspendisse elementum urna augue, 
                     sit amet dictum libero pulvinar vitae. Maecenas cursus leo non nunc mattis lacinia. Donec ac mauris nunc. 
                     Etiam mattis dui eu sapien fringilla mollis. Fusce ut massa lacus. Suspendisse nec auctor ex. 
@@ -125,42 +102,37 @@
                 </p>
             </div>
         </section>
-        <section class="forum-section"></section>
-        <section class="forum-section"></section>
-        <section class="forum-section"></section>
-        <section class="forum-section"></section>
-        <section class="forum-section"></section>
-        <section class="forum-section"></section>
-        <section class="forum-section"></section>
-        <section class="forum-section"></section>
-        <section class="forum-section"></section>
-        <section class="forum-section"></section>
-        <section class="forum-section"></section>
-        <section class="forum-section"></section>
-        <section class="forum-section"></section>
-        <section class="forum-section"></section>
+        <section class="post-comment">
+            <div class="comment-header">
+                <img src="img/skull_icon.png" width="70px" height="70px" alt="">
+                <div class="info-wrapper-comment">
+                    <span class="post-user">Username</span>
+                    <span class="post-category">Wasteland</span>
+                    <span class="post-date">YYYY-MM-DD HH24:MI:SS</span>
+                </div>
+            </div>
+            <div class="comment-main">
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sed iaculis urna, a lacinia ex. Suspendisse elementum urna augue, 
+                    sit amet dictum libero pulvinar vitae. Maecenas cursus leo non nunc mattis lacinia. Donec ac mauris nunc. 
+                    Etiam mattis dui eu sapien fringilla mollis. Fusce ut massa lacus. Suspendisse nec auctor ex. 
+                    Cras ac quam faucibus, suscipit urna sit amet, commodo nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; 
+                    Etiam fringilla aliquet lorem, nec blandit nulla. Maecenas sollicitudin est in metus consequat, vitae suscipit elit placerat. 
+                    Mauris tincidunt elit at imperdiet malesuada. Aenean aliquam scelerisque purus, vitae scelerisque odio tempor et. 
+                    Vivamus consectetur eu ante ut viverra. Donec odio eros, auctor a porta eu, condimentum quis elit.
+                </p>
+            </div>
+        </section>
     </div>
 
-    <!-- NEW POST MODAL -->
-    <div id="post-blanket" class="blanket"></div>
-    <div class="form-modal">
+    <!-- NEW COMMENT MODAL -->
+    <div id="comment-blanket" class="blanket"></div>
+    <div id="comment-modal" class="form-modal">
         <form action="#" method="post">
-            <label for="title">Title</label>
-            <input type="text" name="title" id="new-post-title" maxlength="140">
             <label for="image_url">Image</label>
-            <input type="text" name="image_url" id="new-post-image" maxlength="120">
-            <label for="category">Category</label>
-            <select name="category" id="new-topic-category">
-                <option value="General">General</option>
-                <option value="Movies">Movies</option>
-                <option value="Television">Television</option>
-                <option value="Music">Music</option>
-                <option value="Video Games">Video Games</option>
-                <option value="Politics">Politics</option>
-                <option value="Wasteland">Wasteland</option>
-            </select>
+            <input type="text" name="image_url" id="new-comment-image" maxlength="120">
             <label for="title">Content</label>
-            <textarea name="content" id="new-topic-content" maxlength="4499"></textarea>
+            <textarea name="content" id="new-comment-content" maxlength="4499"></textarea>
             <input type="submit" value="Submit">
         </form>
     </div>

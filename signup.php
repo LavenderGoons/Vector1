@@ -1,6 +1,6 @@
 <?php 
-    require('operations.php');
-    session_start();
+    require('include/operations.php');
+    //session_start();
     $signup_error = '';
     $username = $password = $email = $first_name = $last_name = $image_url = '';
     $user_error = $pass_error = $email_error = $first_name_error = $last_name_error = '';
@@ -46,19 +46,19 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <link rel="stylesheet" href="css/bootstrap.css"/>
-        <link rel="stylesheet" href="css/bootstrap-grid.css"/>
-        <link rel="stylesheet" href="css/forms.css"/>
-        <link rel="stylesheet" href="css/modal.css"/>
-        <link rel="stylesheet" href="css/animation.css"/>
-        <link rel="stylesheet" href="css/font-awesome.min.css"/>
+        <link rel="stylesheet" href="./css/bootstrap.css"/>
+        <link rel="stylesheet" href="./css/bootstrap-grid.css"/>
+        <link rel="stylesheet" href="./css/forms.css"/>
+        <link rel="stylesheet" href="./css/modal.css"/>
+        <link rel="stylesheet" href="./css/animation.css"/>
+        <link rel="stylesheet" href="./css/font-awesome.min.css"/>
         
-        <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
-        <link rel="icon" type="image/x-icon" href="img/favicons/favicon.ico">
-        <link rel="manifest" href="img/manifest.json">
-        <link rel="mask-icon" href="img/safari-pinned-tab.svg" color="#1976D2">
+        <link rel="apple-touch-icon" sizes="180x180" href="./img/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="./img/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="./img/favicon-16x16.png">
+        <link rel="icon" type="image/x-icon" href="../img/favicons/favicon.ico">
+        <link rel="manifest" href="./img/manifest.json">
+        <link rel="mask-icon" href="./img/safari-pinned-tab.svg" color="#1976D2">
         <meta name="theme-color" content="#ffffff">
         
         <title>Sign Up</title>
@@ -146,7 +146,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
     integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
     crossorigin="anonymous"></script>
-<script src="js/bootstrap.js"></script>
-<script src="js/scripts.js"></script>
+<script src="../js/bootstrap.js"></script>
+<script src="../js/scripts.js"></script>
 </body>
 </html>

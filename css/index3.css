@@ -171,13 +171,17 @@ section.forum-section {
     align-items: flex-end;
 }
 
-.post-date, .post-user {
+.post-date, .post-user, .post-category {
     font-size: .75rem;
-    margin-right: 5px;
+    margin-right: 7px;
 }
 
 .post-user::before {
     content: 'By: ';
+}
+
+.post-category::before {
+    content: 'In: ';
 }
 
 /* PREVIEW */
