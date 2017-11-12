@@ -161,6 +161,15 @@ section.forum-section {
     padding: 10px;
 }
 
+.post-link {
+    color: rgb(33, 37, 41);
+}
+
+.post-link:hover {
+    color: #ed2939;
+    text-decoration: none;
+}
+
 .info-wrapper, .title-wrapper {
     height: 50%;
     width: 100%;
@@ -233,6 +242,10 @@ section.no-cursor {
     width: 100%;
     display: flex;
     align-items: center;
+}
+
+.comment-header > img {
+    margin: 10px;
 }
 
 .comment-main {

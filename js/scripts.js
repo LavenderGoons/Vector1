@@ -1,8 +1,11 @@
 $(function(){
     //Show forum post preview
     $('.forum-section').click(function (e) {
-        var preview = $(this).find('.preview-content');
-        preview.toggle();
+        console.log(e);
+        if (e.target != $(this).find('a.post-link')[0]) {
+            var preview = $(this).find('.preview-content');
+            preview.toggle();
+        }
     });
 
     //Display new topic modal

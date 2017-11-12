@@ -1,33 +1,25 @@
-<?php
+<?php 
     require('include/operations.php');
-    if(!isset($_SESSION['username'])) {
-        header('location: login.php');
-    }
-    $post_error = $post_result = '';
-    $title = $category = $content = $image_url = '';
+    $_GET = filter_input_array(INPUT_GET, FILTER_SANITIZE_STRING);
+    $post_id = $_GET['post_id'];
+
+    //Create comment
+    $content = $image_url = '';
     //TODO show error messages
-    $title_error = $content_error = '';
+    $content_error = '';
     if($_SERVER['REQUEST_METHOD'] == 'POST') {
         $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-        //Cant trim the title or the content
-        $title = $_POST['title'];
         $image_url = trim($_POST['image_url']);
-        $category = trim($_POST['category']);
         $content = $_POST['content'];
 
-        // Validate all inputs
-        if(empty($title)) {
-            $title_error = 'Please Enter A Title';
-        }
         if(empty($content)) {
-            $content_error = 'Please Enter Some Content';
+            $content_error = 'Please Enter Content';
         }
 
-        if(empty($title_error) && empty($content_error)) {
-            $post_result =  create_forum_post($_SESSION['username'], $title, $image_url, $category, $content);
+        if(empty($content_error)) {
+            create_comment($_SESSION['username'], $post_id, $image_url, $content);
         }
     }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -35,24 +27,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="./css/bootstrap.css"/>
-    <link rel="stylesheet" href="./css/bootstrap-grid.css"/>
-    <link rel="stylesheet" href="./css/index3.css"/>
-    <link rel="stylesheet" href="./css/modal.css"/>
-    <link rel="stylesheet" href="./css/font-awesome.min.css"/>  
+    <link rel="stylesheet" href="css/bootstrap.css"/>
+    <link rel="stylesheet" href="css/bootstrap-grid.css"/>
+    <!-- <link rel="stylesheet" href="css/styles.css"/> -->
+    <link rel="stylesheet" href="css/index3.css"/>
+    <link rel="stylesheet" href="css/modal.css"/>
+    <link rel="stylesheet" href="css/font-awesome.min.css"/>  
   
-    <link rel="apple-touch-icon" sizes="180x180" href="./img/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="./img/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="./img/favicon-16x16.png">
-    <link rel="icon" type="image/x-icon" href="./img/favicons/favicon.ico">
-    <link rel="manifest" href="./img/manifest.json">
-    <link rel="mask-icon" href="./img/safari-pinned-tab.svg" color="#1976D2">
+    <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
+    <link rel="icon" type="image/x-icon" href="img/favicons/favicon.ico">
+    <link rel="manifest" href="img/manifest.json">
+    <link rel="mask-icon" href="img/safari-pinned-tab.svg" color="#1976D2">
     <meta name="theme-color" content="#ffffff">
-    <title>Home</title>
+    <title>Forum Post</title>
 </head>
 <body>
     <nav id="top-nav" class="navbar navbar-dark fixed-top">
-        <a href="index.html" class="navbar-brand"> 
+        <a href="index.html" class="navbar-brand">
             <img src="img/skull_icon.png" alt="" width="40" height="40">
         </a>
         <div id="user-ref">
@@ -97,33 +90,22 @@
     </div>
     <div id="content">
         <div id="content-header">
-            <button id="new-topic-btn">New</button>
+            <button id="new-comment-btn">Reply</button>
         </div>
         <?php 
-            echo get_forum_posts();
+            global $post_id;
+            echo get_post_and_comments($post_id);
         ?>
     </div>
 
-    <!-- NEW POST MODAL -->
-    <div id="post-blanket" class="blanket"></div>
-    <div class="form-modal">
+    <!-- NEW COMMENT MODAL -->
+    <div id="comment-blanket" class="blanket"></div>
+    <div id="comment-modal" class="form-modal">
         <form action="#" method="post">
-            <label for="title">Title</label>
-            <input type="text" name="title" id="new-post-title" maxlength="140" required>
             <label for="image_url">Image</label>
-            <input type="text" name="image_url" id="new-post-image" maxlength="120">
-            <label for="category">Category</label>
-            <select name="category" id="new-topic-category">
-                <option value="General">General</option>
-                <option value="Movies">Movies</option>
-                <option value="Television">Television</option>
-                <option value="Music">Music</option>
-                <option value="Video Games">Video Games</option>
-                <option value="Politics">Politics</option>
-                <option value="Wasteland">Wasteland</option>
-            </select>
+            <input type="text" name="image_url" id="new-comment-image" maxlength="120">
             <label for="title">Content</label>
-            <textarea name="content" id="new-topic-content" maxlength="4499" required></textarea>
+            <textarea name="content" id="new-comment-content" maxlength="4499"></textarea>
             <input type="submit" value="Submit">
         </form>
     </div>
