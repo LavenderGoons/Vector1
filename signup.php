@@ -1,6 +1,8 @@
 <?php 
-    require('include/operations.php');
-    //session_start();
+    require('include/signup_utils.php');
+    if(check_session()) {
+        header('location: index.php');
+    }
     $signup_error = '';
     $username = $password = $email = $first_name = $last_name = $image_url = '';
     $user_error = $pass_error = $email_error = $first_name_error = $last_name_error = '';

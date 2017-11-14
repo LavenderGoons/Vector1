@@ -1,5 +1,5 @@
 <?php 
-    require('include/operations.php');
+    require('include/post_utils.php');
     $_GET = filter_input_array(INPUT_GET, FILTER_SANITIZE_STRING);
     $post_id = $_GET['post_id'];
 

@@ -1,6 +1,7 @@
 <?php
-    require('include/operations.php');
-    if(!isset($_SESSION['username'])) {
+    //require('include/operations.php');
+    require('include/post_utils.php');
+    if(!check_session()) {
         header('location: login.php');
     }
     $post_error = $post_result = '';

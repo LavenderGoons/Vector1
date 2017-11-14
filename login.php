@@ -1,14 +1,14 @@
 <?php 
-    require('include/operations.php');
-    //TODO Move Session start maybe?
-    //session_start();
-
+    require('include/login_utils.php');
+    if(check_session()) {
+        header('location: index.php');
+    }
     $login_error = '';
     $username = $password = $email = '';
     $user_error = $pass_error = $email_error = '';
 
-    if(isset($_SESSION['username'])) {
-        $username = $_SESSION['username'];
+    if(isset($_SESSION['temp_user'])) {
+        $username = $_SESSION['temp_user'];
     }
 
     if($_SERVER['REQUEST_METHOD'] == "POST") {
