@@ -1,9 +1,14 @@
 <?php
-    //require('include/operations.php');
     require('include/post_utils.php');
     if(!check_session()) {
         header('location: login.php');
     }
+    $_GET = filter_input_array(INPUT_GET, FILTER_SANITIZE_STRING);
+    $post_category = 'all';
+    if(isset($_GET['category'])) {
+        $post_category = $_GET['category'];
+    }
+
     $post_error = $post_result = '';
     $title = $category = $content = $image_url = '';
     //TODO show error messages
@@ -53,7 +58,8 @@
 </head>
 <body>
     <nav id="top-nav" class="navbar navbar-dark fixed-top">
-        <a href="index.html" class="navbar-brand"> 
+        <a href="index.html" class="navbar-brand">
+            <!-- Logo Image -->
             <img src="img/skull_icon.png" alt="" width="40" height="40">
         </a>
         <div id="user-ref">
@@ -65,14 +71,10 @@
         </button>
         <div class="navbar-collapse collapse" id="navbarCollapse">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active"><a href="index.html" class="nav-link">All</a></li>
-                <li class="nav-item"><a href="index.html" class="nav-link">General</a></li>
-                <li class="nav-item"><a href="index2.html" class="nav-link">Movies</a></li>
-                <li class="nav-item"><a href="login.html" class="nav-link">Television</a></li>
-                <li class="nav-item"><a href="index.html" class="nav-link">Music</a></li>
-                <li class="nav-item"><a href="index2.html" class="nav-link">Video Games</a></li>
-                <li class="nav-item"><a href="login.html" class="nav-link">Politics</a></li>
-                <li class="nav-item"><a href="login.html" class="nav-link">Wasteland</a></li>
+                <?php
+                    global $post_category;
+                    echo generate_navbar_categories($post_category);
+                ?>
             </ul>
         </div>
     </nav>
@@ -84,14 +86,10 @@
                 </div>
                 <div id="sidebar-content">
                     <ul id="sidebar-nav">
-                        <li class="list-item selected">All</li>
-                        <li class="list-item">General</li>
-                        <li class="list-item">Movies</li>
-                        <li class="list-item">Television</li>
-                        <li class="list-item">Music</li>
-                        <li class="list-item">Video Games</li>
-                        <li class="list-item">Politics</li>
-                        <li class="list-item">Wasteland</li>
+                        <?php
+                            global $post_category;
+                            echo generate_sidebar_categories($post_category);
+                        ?>
                     </ul>
                 </div>
             </div>
@@ -100,8 +98,9 @@
         <div id="content-header">
             <button id="new-topic-btn">New</button>
         </div>
-        <?php 
-            echo get_forum_posts();
+        <?php
+            global $post_category;
+            echo get_forum_posts($post_category);
         ?>
     </div>
 
@@ -115,13 +114,13 @@
             <input type="text" name="image_url" id="new-post-image" maxlength="120">
             <label for="category">Category</label>
             <select name="category" id="new-topic-category">
-                <option value="General">General</option>
-                <option value="Movies">Movies</option>
-                <option value="Television">Television</option>
-                <option value="Music">Music</option>
-                <option value="Video Games">Video Games</option>
-                <option value="Politics">Politics</option>
-                <option value="Wasteland">Wasteland</option>
+                <option value="general">General</option>
+                <option value="movies">Movies</option>
+                <option value="television">Television</option>
+                <option value="music">Music</option>
+                <option value="video_games">Video Games</option>
+                <option value="politics">Politics</option>
+                <option value="wasteland">Wasteland</option>
             </select>
             <label for="title">Content</label>
             <textarea name="content" id="new-topic-content" maxlength="4499" required></textarea>

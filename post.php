@@ -1,7 +1,15 @@
 <?php 
     require('include/post_utils.php');
     $_GET = filter_input_array(INPUT_GET, FILTER_SANITIZE_STRING);
+    if(!isset($_GET['post_id'])) {
+        header('location: index.php');
+    }
     $post_id = $_GET['post_id'];
+
+    $post_category = 'all';
+    if(isset($_GET['category'])) {
+        $post_category = $_GET['category'];
+    }
 
     //Create comment
     $content = $image_url = '';
@@ -57,14 +65,10 @@
         </button>
         <div class="navbar-collapse collapse" id="navbarCollapse">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active"><a href="index.html" class="nav-link">All</a></li>
-                <li class="nav-item"><a href="index.html" class="nav-link">General</a></li>
-                <li class="nav-item"><a href="index2.html" class="nav-link">Movies</a></li>
-                <li class="nav-item"><a href="login.html" class="nav-link">Television</a></li>
-                <li class="nav-item"><a href="index.html" class="nav-link">Music</a></li>
-                <li class="nav-item"><a href="index2.html" class="nav-link">Video Games</a></li>
-                <li class="nav-item"><a href="login.html" class="nav-link">Politics</a></li>
-                <li class="nav-item"><a href="login.html" class="nav-link">Wasteland</a></li>
+                <?php
+                    global $post_category;
+                    echo generate_navbar_categories($post_category);
+                ?>
             </ul>
         </div>
     </nav>
@@ -76,14 +80,10 @@
                 </div>
                 <div id="sidebar-content">
                     <ul id="sidebar-nav">
-                        <li class="list-item selected">All</li>
-                        <li class="list-item">General</li>
-                        <li class="list-item">Movies</li>
-                        <li class="list-item">Television</li>
-                        <li class="list-item">Music</li>
-                        <li class="list-item">Video Games</li>
-                        <li class="list-item">Politics</li>
-                        <li class="list-item">Wasteland</li>
+                        <?php
+                            global $post_category;
+                            echo generate_sidebar_categories($post_category);
+                        ?>
                     </ul>
                 </div>
             </div>

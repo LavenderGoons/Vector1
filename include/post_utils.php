@@ -1,5 +1,6 @@
 <?php 
 require('session_check.php');
+//Create a comment in the database
 function create_forum_post($username, $title, $image_url, $category, $content) {
     global $conn;
     $user_id = get_user_id($username);
@@ -7,13 +8,14 @@ function create_forum_post($username, $title, $image_url, $category, $content) {
     $result = mysqli_query($conn, $sql);
     if($result) {
         $post_id = mysqli_insert_id($conn);
-        $post = 'location: post.php?post_id=' . $post_id; 
+        $post = 'location: post.php?post_id=' . $post_id.'&category='.$category; 
         header($post);
     } else {
         return false;
     }
 }
 
+//Create and comment in the database
 function create_comment($username, $post_id, $image_url, $content) {
     global $conn;
     $user_id = get_user_id($username);
@@ -26,6 +28,7 @@ function create_comment($username, $post_id, $image_url, $content) {
     }
 }
 
+//Generate the forum post based on the info
 function generate_post_html($post_id, $username, $title, $category, $content, $image_url, $post_date, $is_post_head) {
     $str = '';
     // $is_post_head is the post at the top of comments, or with other posts
@@ -44,13 +47,13 @@ function generate_post_html($post_id, $username, $title, $category, $content, $i
     $str .= '<h4>';
     //Don't make title link when on post page
     if(!$is_post_head) {
-        $str .= '<a class="post-link" href="post.php?post_id='.$post_id.'">'. $title . '</a></h4></div>';
+        $str .= '<a class="post-link" href="post.php?post_id='.$post_id.'&category='.$category.'">'. $title . '</a></h4></div>';
     } else {
         $str .= $title . '</h4></div>';
     }
     $str .= '<div class="info-wrapper">';
     $str .= '<span class="post-user">'.$username.'</span>';
-    $str .= '<span class="post-category">'.$category.'</span>';
+    $str .= '<span class="post-category">'.format_category($category).'</span>';
     $str .= '<span class="post-date">'.$post_date.'</span></div></div>';
     if($is_post_head) {
         $str .= '<div class="post-content">';
@@ -64,6 +67,7 @@ function generate_post_html($post_id, $username, $title, $category, $content, $i
     return $str;
 }
 
+//Generate the html for each comment based on info
 function generate_comment_html($comment_id, $username, $content, $image_url, $post_date) {
     $str = '<section class="post-comment" data-comment-id='.$comment_id.'>';
     $str .= '<div class="comment-header">';
@@ -79,11 +83,21 @@ function generate_comment_html($comment_id, $username, $content, $image_url, $po
     return $str;
 }
 
-function get_forum_posts() {
+//Get the forum posts for the index page
+function get_forum_posts($post_category) {
     global $conn;
+
+    $post_category = strtolower($post_category);
+
     //TODO Remove the content column and do an AJAX request on the client side.
     $sql = "SELECT u.username, u.image_url AS user_image, fp.post_id, fp.title, fp.category, fp.image_url AS post_image, fp.post_date, fp.content"; 
-    $sql .= " FROM users u JOIN forum_posts fp on u.id = fp.user_id ORDER BY post_id DESC LIMIT 25";
+    $sql .= " FROM users u JOIN forum_posts fp on u.id = fp.user_id";
+    // Filter the posts by category, but not all
+    if($post_category != "all") {
+        //The space is HERE
+        $sql .= " WHERE category = '$post_category'";
+    }
+    $sql .=  " ORDER BY post_id DESC LIMIT 25";
     $result = mysqli_query($conn, $sql);
     $str = '';
     while($row = mysqli_fetch_assoc($result)) {
@@ -92,6 +106,7 @@ function get_forum_posts() {
     return $str;
 }
 
+//Fetch the post and comments for a specific post page
 function get_post_and_comments($post_id_in) {
     global $conn;
     $sql = "SELECT u.username, u.image_url AS user_image, fp.post_id, fp.title, fp.category, fp.image_url AS post_image, fp.post_date, fp.content"; 
@@ -112,5 +127,51 @@ function get_post_and_comments($post_id_in) {
         }
     }
     return $str;
+}
+
+//Build the categories in the sidebar
+function generate_sidebar_categories($post_category) {
+    //Get the global config file from the config file
+    global $CATEGORIES;
+    $post_category = strtolower($post_category);
+    $str = "";
+    foreach($CATEGORIES as $k => $v) {
+        $item = '<li class="list-item';
+        //Assigned selected class
+        if($post_category == $k) {
+            $item .= ' selected';
+        }
+        $item .= '"><a href="index.php?category=' . $k .'"';
+        $item .= ' class="nav-link">' . $v . '</a></li>';
+        $str .= $item;
+    }
+    return $str;
+}
+
+//Build the categories in the navbar
+function generate_navbar_categories($post_category) {
+    //Get the global config file from the config file
+    global $CATEGORIES;
+    $post_category = strtolower($post_category);
+    $str = "";
+    foreach($CATEGORIES as $k => $v) {
+        $item = '<li class="nav-item';
+        if($post_category == $k) {
+            $item .= ' active';
+        }
+        $item .= '"><a href="index.php?category=' . $k .'"';
+        $item .= ' class="nav-link">' . $v . '</a></li>';
+        $str .= $item;
+    }
+    return $str;
+}
+
+//Categories stored in all lower case with spaces as _
+//Format them to spaces and upper case words
+function format_category($category) {
+    if(strrpos($category, "_")) {
+        $category = str_replace("_", " ", $category);
+    }
+    return ucwords($category);
 }
 ?>

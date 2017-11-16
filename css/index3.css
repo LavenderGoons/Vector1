@@ -64,6 +64,11 @@ body {
     cursor: pointer;
 }
 
+.list-item > a {
+    color: inherit;
+    padding: 0px;
+}
+
 .list-item:hover, #sidebar-header:hover, .selected {
     background-color: #ed2939;
     color: white;
@@ -181,16 +186,18 @@ section.forum-section {
 }
 
 .post-date, .post-user, .post-category {
-    font-size: .75rem;
+    font-size: .85rem;
     margin-right: 7px;
 }
 
 .post-user::before {
     content: 'By: ';
+    font-weight: bold;
 }
 
 .post-category::before {
     content: 'In: ';
+    font-weight: bold;
 }
 
 /* PREVIEW */
