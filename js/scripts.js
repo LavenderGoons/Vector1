@@ -42,4 +42,13 @@ $(function(){
     $('#sidebar-header').click(function(){
         location.href='user.php';
     });
+
+    $('#signout, .signout-item').click(function () {
+        $.post('include/controller.php', {command: "signout"}, function(data_in){
+            var data_obj = JSON.parse(data_in);
+            if(data_obj.result == "success") {
+                location.href='login.php';
+            }
+        });
+    })
 });

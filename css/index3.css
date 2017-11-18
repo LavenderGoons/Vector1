@@ -70,7 +70,7 @@ body {
     padding: 0px;
 }
 
-.list-item:hover, #sidebar-header:hover, .selected {
+.list-item:hover, #sidebar-header:hover, .selected, #signout:hover {
     background-color: #ed2939;
     color: white;
     box-shadow: 0 2px 4px rgba(0,0,0,0.24), 0 2px 4px rgba(0,0,0,0.24);
@@ -87,6 +87,16 @@ div#user-ref {
     padding: 5px 0px;
     display: flex;
     align-items: center;
+    cursor: pointer;
+}
+
+#signout {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.25rem;
+    padding: 5px;
+    transition: all .25s ease;
     cursor: pointer;
 }
 

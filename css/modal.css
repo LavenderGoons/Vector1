@@ -73,7 +73,7 @@
     padding: 0px;
 }
 
-.form-modal input[type="submit"]:hover {
+.form-modal input[type="submit"]:hover, .form-modal input[type="submit"]:focus {
     outline: none;
     background-color: #ed2939;
     color: white;

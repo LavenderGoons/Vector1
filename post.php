@@ -73,6 +73,7 @@
                     global $post_category;
                     echo generate_navbar_categories($post_category);
                 ?>
+                <li class="nav-item signout-item"><a href="" class="nav-link">Sign Out</a></li>
             </ul>
         </div>
     </nav>
@@ -89,6 +90,9 @@
                             echo generate_sidebar_categories($post_category);
                         ?>
                     </ul>
+                    <div id="signout">
+                        Sign Out
+                    </div>
                 </div>
             </div>
     </div>
@@ -114,8 +118,8 @@
         </form>
     </div>
 
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
     crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
     integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"

@@ -68,7 +68,7 @@ input[type="submit"], button.input  {
     padding: 0px;
 }
 
-input[type="submit"]:hover, button.input:hover {
+input[type="submit"]:hover, button.input:hover, input[type="submit"]:focus, button.input:focus {
     outline: none;
     background-color: #ed2939;
     color: white;
@@ -87,7 +87,7 @@ a.fake-button {
     height: 35px; /* The a tag doesn't full the button completely */
 }
 
-a.fake-button:hover {
+a.fake-button:hover, a.fake-button:hover {
     color: white;
 }
 
