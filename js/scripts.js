@@ -51,4 +51,9 @@ $(function(){
             }
         });
     })
+
+    $('#delete-user').click(function(){
+        $('#delete-user-blanket').toggle();
+        $('#delete-user-modal').toggle();
+    });
 });

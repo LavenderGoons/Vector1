@@ -38,6 +38,25 @@ function generate_user_image_modal($username) {
     return false;
 }
 
+function generate_delete_user_btn($username) {
+    if($username === $_SESSION['username']) {
+        return '<button type="button" name="delete-user" id="delete-user">Delete User</button>';
+    }
+}
+
+function generate_delete_user_modal($username) {
+    if($username === $_SESSION['username']) {
+        return '<div id="delete-user-blanket" class="blanket"></div><div class="form-modal" id="delete-user-modal">
+            <form action="include/controller.php" method="post">
+                <label for="username">Confirm Username</label>
+                <input type="text" name="conf-username" id="confirm-user-input">
+                <input type="submit" value="Submit">
+            </form>
+        </div>';
+    }
+    return false;
+}
+
 function update_user_image($new_image, $username) {
     global $conn;
     $user_id = get_user_id($username);

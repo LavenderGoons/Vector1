@@ -107,6 +107,10 @@
                         global $user; 
                         echo get_user_profile_email($user); 
                         ?></h3>
+                        <?php
+                            global $user; 
+                            echo generate_delete_user_btn($user);
+                        ?>
                     <?php
                         global $image_error; 
                         if(!empty($image_error)) {
@@ -129,6 +133,11 @@
         $val = generate_user_image_modal($user);
         if($val) {
             echo $val;
+        }
+
+        $del = generate_delete_user_modal($user);
+        if($del) {
+            echo $del;
         }
     ?>
 

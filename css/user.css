@@ -52,3 +52,28 @@
  #content {
     overflow-y: hidden;
  }
+
+ #delete-user {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    height: 40px;
+    font-size: 1.25rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.24);
+    background-color: white;
+    border:none;
+    transition: all .25s ease;
+    cursor: pointer;
+    padding: 5px;
+}
+
+#delete-user:hover,  #delete-user:focus {
+    outline: none;
+    background-color: #ed2939;
+    color: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.24), 0 2px 4px rgba(0,0,0,0.24);
+}
+
+/* 
+<?php global $user; echo generate_delete_user_btn($user);?>
+                    <button type="button" name="delete-user" id="delete-user">Delete User</button>
+*/

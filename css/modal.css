@@ -60,7 +60,7 @@
     font-size: 1rem;
 }
 
-.form-modal input[type="submit"] {
+input[type="submit"] {
     margin-top: 15px;
     margin-bottom: 15px;
     height: 40px;
@@ -73,14 +73,14 @@
     padding: 0px;
 }
 
-.form-modal input[type="submit"]:hover, .form-modal input[type="submit"]:focus {
+input[type="submit"]:hover, input[type="submit"]:focus {
     outline: none;
     background-color: #ed2939;
     color: white;
     box-shadow: 0 2px 4px rgba(0,0,0,0.24), 0 2px 4px rgba(0,0,0,0.24);
 }
 
-.form-modal input[type="submit"]:focus {
+input[type="submit"]:focus {
     outline: none;
 }
 

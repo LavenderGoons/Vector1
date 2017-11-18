@@ -5,6 +5,14 @@
         if(isset($_POST['command'])) {
             process_command($_POST['command']);
         }
+        if(isset($_POST['conf-username']) && $_POST['conf-username'] === $_SESSION['username']) {
+            $result = delete_user($_POST['conf-username']);
+            if($result) {
+                // NEED ../login.php because controller in include dir
+                header('location: ../login.php');
+            }
+
+        }
     }
 
     function process_command($command) {
@@ -20,5 +28,15 @@
         session_destroy();
         setcookie('vector_session', "", time()-3600, '/');
         return array('result'=>'success');
+    }
+
+    function delete_user($username) {
+        global $conn;
+        $user_id = get_user_id($username);
+        $sql = "UPDATE users SET username = '[FEDAYKIN]', password = '[DELETED]', email = '[DELETED]', 
+            first_name = '[DELETED]', last_name = '[DELETED]', image_url = 'img/skull_icon.png', token = NULL WHERE id = '$user_id'";
+        $result = mysqli_query($conn, $sql);
+        signout();
+        return $result;
     }
 ?>
