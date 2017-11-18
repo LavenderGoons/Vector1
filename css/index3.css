@@ -34,6 +34,7 @@ body {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    padding-top: 5px;
 }
 
 #sidebar-header > span {
@@ -249,6 +250,7 @@ section.no-cursor {
     width: 100%;
     display: flex;
     align-items: center;
+    padding-left: 5px;
 }
 
 .comment-header > img {

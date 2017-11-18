@@ -29,4 +29,50 @@
             }
         }
     }
+
+    //Build the categories in the sidebar
+    function generate_sidebar_categories($post_category) {
+        //Get the global config file from the config file
+        global $CATEGORIES;
+        $post_category = strtolower($post_category);
+        $str = "";
+        foreach($CATEGORIES as $k => $v) {
+            $item = '<li class="list-item';
+            //Assigned selected class
+            if($post_category == $k) {
+                $item .= ' selected';
+            }
+            $item .= '"><a href="index.php?category=' . $k .'"';
+            $item .= ' class="nav-link">' . $v . '</a></li>';
+            $str .= $item;
+        }
+        return $str;
+    }
+
+    //Build the categories in the navbar
+    function generate_navbar_categories($post_category) {
+        //Get the global config file from the config file
+        global $CATEGORIES;
+        $post_category = strtolower($post_category);
+        $str = "";
+        foreach($CATEGORIES as $k => $v) {
+            $item = '<li class="nav-item';
+            if($post_category == $k) {
+                $item .= ' active';
+            }
+            $item .= '"><a href="index.php?category=' . $k .'"';
+            $item .= ' class="nav-link">' . $v . '</a></li>';
+            $str .= $item;
+        }
+        return $str;
+    }
+
+    //Categories stored in all lower case with spaces as _
+    //Format them to spaces and upper case words
+    function format_category($category) {
+        if(strrpos($category, "_")) {
+            $category = str_replace("_", " ", $category);
+        }
+        return ucwords($category);
+    }
 ?> 

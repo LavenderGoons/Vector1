@@ -39,9 +39,9 @@ function generate_post_html($post_id, $username, $title, $category, $content, $i
     }
     $str .= '<div class="forum-header">';
     if(isset($image_url)) {
-        $str .= '<img src="' . $image_url .'" width="70px" height="70px" alt=""></div>';
+        $str .= '<a href="user.php?user='.$username.'"><img src="' . $image_url .'" width="70px" height="70px" alt=""></a></div>';
     } else {
-        $str .= '<img src="img/skull_icon.png" width="70px" height="70px" alt=""></div>';
+        $str .= '<a href="user.php?user='.$username.'"><img src="img/skull_icon.png" width="70px" height="70px" alt=""></a></div>';
     }
     $str .= '<div class="forum-main"><div class="title-wrapper">';
     $str .= '<h4>';
@@ -72,9 +72,9 @@ function generate_comment_html($comment_id, $username, $content, $image_url, $po
     $str = '<section class="post-comment" data-comment-id='.$comment_id.'>';
     $str .= '<div class="comment-header">';
     if(isset($image_url)) {
-        $str .= '<img src="' . $image_url .'" width="70px" height="70px" alt="">';
+        $str .= '<a href="user.php?user='.$username.'"><img src="' . $image_url .'" width="70px" height="70px" alt=""></a>';
     } else {
-        $str .= '<img src="img/skull_icon.png" width="70px" height="70px" alt="">';
+        $str .= '<a href="user.php?user='.$username.'"><img src="img/skull_icon.png" width="70px" height="70px" alt=""></a>';
     }
     $str .= '<div class="info-wrapper-comment">';
     $str .= '<span class="post-user">'.$username.'</span>';
@@ -127,51 +127,5 @@ function get_post_and_comments($post_id_in) {
         }
     }
     return $str;
-}
-
-//Build the categories in the sidebar
-function generate_sidebar_categories($post_category) {
-    //Get the global config file from the config file
-    global $CATEGORIES;
-    $post_category = strtolower($post_category);
-    $str = "";
-    foreach($CATEGORIES as $k => $v) {
-        $item = '<li class="list-item';
-        //Assigned selected class
-        if($post_category == $k) {
-            $item .= ' selected';
-        }
-        $item .= '"><a href="index.php?category=' . $k .'"';
-        $item .= ' class="nav-link">' . $v . '</a></li>';
-        $str .= $item;
-    }
-    return $str;
-}
-
-//Build the categories in the navbar
-function generate_navbar_categories($post_category) {
-    //Get the global config file from the config file
-    global $CATEGORIES;
-    $post_category = strtolower($post_category);
-    $str = "";
-    foreach($CATEGORIES as $k => $v) {
-        $item = '<li class="nav-item';
-        if($post_category == $k) {
-            $item .= ' active';
-        }
-        $item .= '"><a href="index.php?category=' . $k .'"';
-        $item .= ' class="nav-link">' . $v . '</a></li>';
-        $str .= $item;
-    }
-    return $str;
-}
-
-//Categories stored in all lower case with spaces as _
-//Format them to spaces and upper case words
-function format_category($category) {
-    if(strrpos($category, "_")) {
-        $category = str_replace("_", " ", $category);
-    }
-    return ucwords($category);
 }
 ?>
