@@ -120,6 +120,12 @@
                 </div>
             </div>
         </div>
+        <div class="user-content-sort">
+        <select name="sort_content" id="select-user-content">
+                <option value="comments">Comments</option>
+                <option value="posts" selected="selected">Posts</option>
+            </select>
+        </div>
         <div class="user-content-box">
             <?php 
                 global $user;

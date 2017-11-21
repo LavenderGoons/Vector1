@@ -33,16 +33,10 @@
     }
 
     function fetch_more_posts($options) {
-        // OPTION examples
-        // page: index || post || user
-        // category: all
-        // post_id: 2 (if post)
-        // last_post_id: 1 (if index || user)
-        // last_comment_id: 1 (if post || user)
         $val = array();
-        if($options['page'] == 'index') {
+        if($options['page'] == 'index' || ($options['page'] == 'user' && $options['user_sort'] == 'posts')) {
             $val['content'] = get_forum_posts($options['category'], $options);
-        } else if($options['page'] == 'post') {
+        } else if($options['page'] == 'post' || ($options['page'] == 'user' && $options['user_sort'] == 'comments')) {
             $val['content'] = get_post_comments($options);
         }
         return $val;

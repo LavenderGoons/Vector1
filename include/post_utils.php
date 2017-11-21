@@ -105,8 +105,12 @@ function get_forum_posts($post_category, $options) {
             $sql .= " WHERE fp.post_id < " . $options['last_post_id'];
         }
     }
-
-    $sql .=  " ORDER BY post_id DESC LIMIT 10";
+    if($options && isset($options['limit'])) {
+        $sql .=  " ORDER BY post_id DESC LIMIT ".$options['limit'];
+    } else {
+        $sql .=  " ORDER BY post_id DESC LIMIT 10";
+    }
+    
     $result = mysqli_query($conn, $sql);
     $str = '';
     while($row = mysqli_fetch_assoc($result)) {
@@ -140,19 +144,26 @@ function get_post_and_comments($post_id_in) {
 
 function get_post_comments($options) {
     global $conn;
-    $post_id = -1;
-    if($options && isset($options['post_id'])) {
-        $post_id = $options['post_id'];
-    }
 
     $sql = "SELECT c.comment_id, c.user_id, c.post_id, c.content, c.comment_date, c.image_url AS comment_image, u.username, u.image_url AS user_image";
-    $sql .= " FROM comments c JOIN users u ON c.user_id = u.id"; 
-    $sql .= " WHERE post_id = $post_id";
+    $sql .= " FROM comments c JOIN users u ON c.user_id = u.id";
+
+    if($options && isset($options['post_id'])) {
+        $sql .= " WHERE post_id = ".$options['post_id'];
+    } else if($options && isset($options['user'])) {
+        $sql .= " WHERE c.user_id = ".get_user_id($options['user']);
+    }
+    
 
     if($options && isset($options['last_comment_id'])) {
         $sql .= " AND c.comment_id < ".$options['last_comment_id'];
     }
-    $sql .= " ORDER BY c.comment_id DESC";
+
+    if($options && isset($options['limit'])) {
+        $sql .=  " ORDER BY c.comment_id DESC LIMIT ".$options['limit'];
+    } else {
+        $sql .=  " ORDER BY c.comment_id DESC LIMIT 10";
+    }
 
     $str = '';
     $result = mysqli_query($conn, $sql);

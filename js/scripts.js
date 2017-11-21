@@ -55,6 +55,16 @@ $(function(){
         $('#delete-user-modal').toggle();
     });
 
+    $('#select-user-content').change(function(){
+        var options = getUrlParameters();
+        options['user_sort'] = $(this).val();
+        options['page'] = getPageName();
+        options['limit'] = 50;
+        options['category'] = 'all';
+        var data = {"command":"load_posts", "options":options};
+        get_more_posts('.user-content-box', data, true);
+    });
+
     var nearBottom = false;
     $('.content').scroll(function () {
         if(($(this).scrollTop() + $('.content').outerHeight() >= document.getElementsByClassName('content')[0].scrollHeight - 100) && !nearBottom) {
@@ -62,33 +72,42 @@ $(function(){
             var options = getUrlParameters();
             options['page'] = getPageName();
 
-            //If on the index page or user sort posts page get the last post to fetch from
-            if($('.forum-section').length > 0) {
-                var last_post_id = $('.forum-section').last().attr('data-post-id');
-                options['last_post_id'] = last_post_id;
-            }
-            
-            //If on the post page or user sort comment page get the last comment to fetch from
-            if($('.post-comment').length > 0) {
-                var last_comment_id = $('.post-comment').last().attr('data-comment-id');
-                options['last_comment_id'] = last_comment_id;
-            }
+            options = get_last_item(options);
 
             var data = {"command":"load_posts", "options":options};
-            get_more_posts('.content', data);
+            get_more_posts('.content', data, false);
         }
     });
 
-    function get_more_posts(content_area, options) { 
+    function get_more_posts(content_area, options, replace) {
         //Send post request and display results       
         $.post('include/controller.php', options, function(data){
             //Parse the PHP json encode to JSON object
             var objData = JSON.parse(data);
             //Access and display the content
-            $(content_area).append(objData.content);
+            if(replace) {
+                $(content_area).html(objData.content);
+            } else {
+                $(content_area).append(objData.content);
+            }
             //Reset near bottom after new content is added
             nearBottom = false;
         });
+    }
+
+    function get_last_item(options) {
+        //If on the index page or user sort posts page get the last post to fetch from
+        if($('.forum-section').length > 0) {
+            var last_post_id = $('.forum-section').last().attr('data-post-id');
+            options['last_post_id'] = last_post_id;
+        }
+
+        //If on the post page or user sort comment page get the last comment to fetch from
+        if($('.post-comment').length > 0) {
+            var last_comment_id = $('.post-comment').last().attr('data-comment-id');
+            options['last_comment_id'] = last_comment_id;
+        }
+        return options;
     }
 
     function getPageName() {
