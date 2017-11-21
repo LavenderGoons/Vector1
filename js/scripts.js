@@ -3,9 +3,21 @@ $(function(){
     $('.forum-section').click(function (e) {
         if (e.target != $(this).find('a.post-link')[0] && e.target != $(this).find('img')[0]) {
             var preview = $(this).find('.preview-content');
+            var post_id = $('.forum-section').attr('data-post-id');
+            if($('.forum-section > .preview-content > p').html().length == 0) {
+                get_post_content(post_id, '.preview-content');
+            }
             preview.toggle();
         }
     });
+
+    function get_post_content(post_id, post_area) {
+        $.post('include/controller.php', {"command":"get_content", "options":{"post_id":post_id}}, function(data){
+            var objData = JSON.parse(data);
+            var p_area = post_area+" > p";
+            $(p_area).html(objData.content);
+        });
+    }
 
     //Display new topic modal
     $('#new-topic-btn, #post-blanket').click(function () {

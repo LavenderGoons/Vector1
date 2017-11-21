@@ -29,6 +29,9 @@
             case "load_posts":
             echo json_encode(fetch_more_posts($options));
             break;
+            case "get_content":
+            echo json_encode(get_preview_content($options));
+            break;
         }
     }
 
@@ -39,6 +42,12 @@
         } else if($options['page'] == 'post' || ($options['page'] == 'user' && $options['user_sort'] == 'comments')) {
             $val['content'] = get_post_comments($options);
         }
+        return $val;
+    }
+
+    function get_preview_content($options) {
+        $val = array();
+        $val['content'] = get_post_content($options);
         return $val;
     }
 

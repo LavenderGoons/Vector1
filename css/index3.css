@@ -148,7 +148,8 @@ section.forum-section {
     background-color: white;
     width: 100%;
     min-height: 100px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    /* box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23); */
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
     display: inline-flex;
     margin-bottom: 15px;
     cursor: pointer;
@@ -204,6 +205,16 @@ section.forum-section {
 .post-user::before {
     content: 'By: ';
     font-weight: bold;
+}
+
+.post-user > a {
+    text-decoration: none;
+    color: rgb(33, 37, 41);
+}
+
+.post-user > a:hover {
+    text-decoration: none;
+    color: #ed2939;
 }
 
 .post-category::before {
