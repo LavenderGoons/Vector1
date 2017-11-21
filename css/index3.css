@@ -114,12 +114,12 @@ div#user-ref {
     padding: 50px;
 }
 
-
 #content-header {
     width: 100%;
     min-height: 75px;
-    background-color: white;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    background-color: #ed2939;;
+    /* box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23); */
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
     margin-bottom: 15px;
     padding: 10px;
     display: inline-flex;
@@ -130,16 +130,16 @@ div#user-ref {
 #content-header > button {
     font-size: 1.5rem;
     height:80%;
-    background-color: #ed2939;
+    background-color: white;
     border:none;
     transition: all .5s ease;
     cursor: pointer;
     box-shadow: 0 2px 4px rgba(0,0,0,0.24);
-    color: white;
+    color: inherit;
     width: 100px;
 }
 
-#content-header > button:hover {
+#content-header > button:hover, #content-header > button:focus{
     outline: none;
     box-shadow: 0 2px 4px rgba(0,0,0,0.24), 0 2px 4px rgba(0,0,0,0.24);
 }

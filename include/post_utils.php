@@ -107,6 +107,11 @@ function get_forum_posts($post_category, $options) {
             $sql .= " WHERE fp.post_id < " . $options['last_post_id'];
         }
     }
+
+    if ($options && isset($options['user'])) {
+        $sql .= " AND u.id = " . $options['user'];
+    }
+
     if($options && isset($options['limit'])) {
         $sql .=  " ORDER BY post_id DESC LIMIT ".$options['limit'];
     } else {
@@ -156,7 +161,6 @@ function get_post_comments($options) {
         $sql .= " WHERE c.user_id = ".get_user_id($options['user']);
     }
     
-
     if($options && isset($options['last_comment_id'])) {
         $sql .= " AND c.comment_id < ".$options['last_comment_id'];
     }
@@ -166,7 +170,6 @@ function get_post_comments($options) {
     } else {
         $sql .=  " ORDER BY c.comment_id DESC LIMIT 10";
     }
-
     $str = '';
     $result = mysqli_query($conn, $sql);
     if(gettype($result) == 'object') {

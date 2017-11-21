@@ -37,6 +37,9 @@
 
     function fetch_more_posts($options) {
         $val = array();
+        if($options['page'] == 'user' && strlen($options['user']) == 0) {
+            $options['user'] = $_SESSION['username'];
+        }
         if($options['page'] == 'index' || ($options['page'] == 'user' && $options['user_sort'] == 'posts')) {
             $val['content'] = get_forum_posts($options['category'], $options);
         } else if($options['page'] == 'post' || ($options['page'] == 'user' && $options['user_sort'] == 'comments')) {
