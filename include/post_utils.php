@@ -109,7 +109,7 @@ function get_forum_posts($post_category, $options) {
     }
 
     if ($options && isset($options['user'])) {
-        $sql .= " AND u.id = " . $options['user'];
+        $sql .= " AND u.id = " . get_user_id($options['user']);
     }
 
     if($options && isset($options['limit'])) {
