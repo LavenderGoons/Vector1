@@ -79,7 +79,7 @@ function generate_comment_html($comment_id, $username, $content, $image_url, $po
         $str .= '<a href="user.php?user='.$username.'"><img src="img/skull_icon.png" width="70px" height="70px" alt=""></a>';
     }
     $str .= '<div class="info-wrapper-comment">';
-    $str .= '<span class="post-user">'.$username.'</span>';
+    $str .= '<span class="post-user"><a href="user.php?user='.$username.'">'.$username.'</a></span>';
     $str .= '<span class="post-date">'.$post_date.'</span></div></div>';
     $str .= '<div class="comment-main"><p>'.$content.'</p></div></section>';
     return $str;
