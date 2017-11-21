@@ -98,13 +98,13 @@
                 </div>
             </div>
     </div>
-    <div id="content">
+    <div class="content" id="content-index">
         <div id="content-header">
             <button id="new-topic-btn">New</button>
         </div>
         <?php
             global $post_category;
-            echo get_forum_posts($post_category);
+            echo get_forum_posts($post_category, false);
         ?>
     </div>
 

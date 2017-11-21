@@ -89,7 +89,7 @@
                 </div>
             </div>
     </div>
-    <div id="content">
+    <div class="content" id="content-user">
         <div class="user-outer-wrapper">
             <div class="user-wrapper">
                 <div class="user-img-wrapper">

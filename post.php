@@ -96,7 +96,7 @@
                 </div>
             </div>
     </div>
-    <div id="content">
+    <div class="content" id="content-post">
         <div id="content-header">
             <button id="new-comment-btn">Reply</button>
         </div>

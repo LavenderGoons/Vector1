@@ -84,7 +84,7 @@ function generate_comment_html($comment_id, $username, $content, $image_url, $po
 }
 
 //Get the forum posts for the index page
-function get_forum_posts($post_category) {
+function get_forum_posts($post_category, $options) {
     global $conn;
 
     $post_category = strtolower($post_category);
@@ -97,7 +97,16 @@ function get_forum_posts($post_category) {
         //The space is HERE
         $sql .= " WHERE category = '$post_category'";
     }
-    $sql .=  " ORDER BY post_id DESC LIMIT 25";
+
+    if ($options && isset($options['last_post_id'])) {
+        if($post_category != "all") {
+            $sql .= " AND fp.post_id < " . $options['last_post_id'];
+        } else {
+            $sql .= " WHERE fp.post_id < " . $options['last_post_id'];
+        }
+    }
+
+    $sql .=  " ORDER BY post_id DESC LIMIT 10";
     $result = mysqli_query($conn, $sql);
     $str = '';
     while($row = mysqli_fetch_assoc($result)) {
@@ -118,8 +127,34 @@ function get_post_and_comments($post_id_in) {
     $str .= generate_post_html($row['post_id'], $row['username'], $row['title'], $row['category'], $row['content'], $row['user_image'], $row['post_date'], true);
 
     $sql = "SELECT c.comment_id, c.user_id, c.post_id, c.content, c.comment_date, c.image_url AS comment_image, u.username, u.image_url AS user_image";
-    $sql .= " FROM comments c JOIN users u ON c.user_id = u.id WHERE post_id = $post_id ORDER BY c.comment_id DESC";
+    $sql .= " FROM comments c JOIN users u ON c.user_id = u.id WHERE post_id = $post_id ORDER BY c.comment_id DESC LIMIT 10";
+    //TODO add limits to comment fetch
+    $result = mysqli_query($conn, $sql);
+    if(gettype($result) == 'object') {
+        while($row = mysqli_fetch_assoc($result)) {
+            $str .= generate_comment_html($row['comment_id'], $row['username'], $row['content'], $row['user_image'], $row['comment_date']);
+        }
+    }
+    return $str;
+}
 
+function get_post_comments($options) {
+    global $conn;
+    $post_id = -1;
+    if($options && isset($options['post_id'])) {
+        $post_id = $options['post_id'];
+    }
+
+    $sql = "SELECT c.comment_id, c.user_id, c.post_id, c.content, c.comment_date, c.image_url AS comment_image, u.username, u.image_url AS user_image";
+    $sql .= " FROM comments c JOIN users u ON c.user_id = u.id"; 
+    $sql .= " WHERE post_id = $post_id";
+
+    if($options && isset($options['last_comment_id'])) {
+        $sql .= " AND c.comment_id < ".$options['last_comment_id'];
+    }
+    $sql .= " ORDER BY c.comment_id DESC";
+
+    $str = '';
     $result = mysqli_query($conn, $sql);
     if(gettype($result) == 'object') {
         while($row = mysqli_fetch_assoc($result)) {

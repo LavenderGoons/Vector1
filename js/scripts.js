@@ -18,7 +18,6 @@ $(function(){
 
     $('#new-comment-btn, #comment-blanket').click(function () {
         $('#comment-blanket').toggle();
-        // $('#comment-modal').css('display','inline-flex');
         $('.form-modal').toggle();
         $('#new-comment-title').val('');
      });
@@ -26,7 +25,6 @@ $(function(){
     //Display the image url modal
     $('.profile-img-wrapper, #profile-image-blanket, .user-img-wrapper, #user-image-blanket').click(function(){
         $('.blanket').toggle();
-        // $('.form-modal').css('display','inline-flex');
         $('.form-modal').toggle();
     });
     
@@ -56,4 +54,60 @@ $(function(){
         $('#delete-user-blanket').toggle();
         $('#delete-user-modal').toggle();
     });
+
+    var nearBottom = false;
+    $('.content').scroll(function () {
+        if(($(this).scrollTop() + $('.content').outerHeight() >= document.getElementsByClassName('content')[0].scrollHeight - 100) && !nearBottom) {
+            nearBottom = true;
+            var options = getUrlParameters();
+            options['page'] = getPageName();
+
+            //If on the index page or user sort posts page get the last post to fetch from
+            if($('.forum-section').length > 0) {
+                var last_post_id = $('.forum-section').last().attr('data-post-id');
+                options['last_post_id'] = last_post_id;
+            }
+            
+            //If on the post page or user sort comment page get the last comment to fetch from
+            if($('.post-comment').length > 0) {
+                var last_comment_id = $('.post-comment').last().attr('data-comment-id');
+                options['last_comment_id'] = last_comment_id;
+            }
+
+            var data = {"command":"load_posts", "options":options};
+            get_more_posts('.content', data);
+        }
+    });
+
+    function get_more_posts(content_area, options) { 
+        //Send post request and display results       
+        $.post('include/controller.php', options, function(data){
+            //Parse the PHP json encode to JSON object
+            var objData = JSON.parse(data);
+            //Access and display the content
+            $(content_area).append(objData.content);
+            //Reset near bottom after new content is added
+            nearBottom = false;
+        });
+    }
+
+    function getPageName() {
+        var sPageURL = decodeURIComponent(window.location.pathname);
+        var page = sPageURL.substr(sPageURL.lastIndexOf('/')+1);
+        page = page.substring(0, page.indexOf('.'));
+        return page;
+    }
+
+    function getUrlParameters() {
+        var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+            sURLVariables = sPageURL.split('&'),
+            sParameterName,
+            i;
+        var options = {};
+        for (i = 0; i < sURLVariables.length; i++) {
+            sParameterName = sURLVariables[i].split('=');
+            options[sParameterName[0]] = sParameterName[1];
+        }
+        return options;
+    };
 });
