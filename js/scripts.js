@@ -17,9 +17,14 @@ $(function(){
     });
 
     //Display the image url modal
-    $('.profile-img-wrapper, #profile-image-blanket, .user-img-wrapper, #user-image-blanket').click(function(){
+    $('.profile-img-wrapper, #profile-image-blanket').click(function(){
         $('.blanket').toggle();
         $('.form-modal').toggle();
+    });
+
+    $('.user-img-wrapper, #user-image-blanket').click(function(){
+        $('#user-image-blanket').toggle();
+        $('#image-url-modal').toggle();
     });
 
     //Get url from modal and update img/form input
@@ -44,7 +49,7 @@ $(function(){
         });
     })
 
-    $('#delete-user').click(function(){
+    $('#delete-user, #delete-user-blanket').click(function(){
         $('#delete-user-blanket').toggle();
         $('#delete-user-modal').toggle();
     });
@@ -161,6 +166,7 @@ function get_post_content(post_id, post_area) {
 //LOAD THE FORUM POST LISTENER
 function load_section_listeners() {
     //Show forum post preview
+    $('.forum-section').off();
     $('.forum-section').click(function (e) {
         if (e.target != $(this).find('a.post-link')[0] && e.target != $(this).find('img')[0]) {
             var preview = $(this).find('.preview-content');
