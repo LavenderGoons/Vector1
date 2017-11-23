@@ -29,7 +29,11 @@
         }
 
         if(empty($content_error)) {
-            create_comment($_SESSION['username'], $post_id, $image_url, $content);
+            $comment_result = create_comment($_SESSION['username'], $post_id, $image_url, $content);
+            //Reset values
+            if($comment_result) {
+                header('location: post.php?post_id='.$post_id.'&category='.$post_category);
+            }
         }
     }
 ?>
@@ -109,11 +113,11 @@
     <!-- NEW COMMENT MODAL -->
     <div id="comment-blanket" class="blanket"></div>
     <div id="comment-modal" class="form-modal">
-        <form action="#" method="post">
+        <form action="" method="post">
             <label for="image_url">Image</label>
             <input type="text" name="image_url" id="new-comment-image" maxlength="120">
             <label for="title">Content</label>
-            <textarea name="content" id="new-comment-content" maxlength="4499"></textarea>
+            <textarea name="content" id="new-comment-content" maxlength="4499" required></textarea>
             <input type="submit" value="Submit">
         </form>
     </div>

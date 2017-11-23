@@ -80,7 +80,7 @@ function get_user_posts($username) {
     $result = mysqli_query($conn, $sql);
     if(gettype($result) == 'object') {
         while($row = mysqli_fetch_assoc($result)) {
-            $str .= generate_post_html($row['post_id'], $row['username'], $row['title'], $row['category'], $row['content'], $row['user_image'], $row['post_date'], false);
+            $str .= generate_post_html($row['post_id'], $row['username'], $row['title'], $row['category'], $row['content'], $row['user_image'], $row['post_image'], $row['post_date'], false);
         }
     }
     return $str;
