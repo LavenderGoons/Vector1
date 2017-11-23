@@ -54,6 +54,11 @@ $(function(){
         $('#delete-user-modal').toggle();
     });
 
+    $('#change-pass, #change-pass-blanket').click(function(){
+        $('#change-pass-blanket').toggle();
+        $('#change-pass-modal').toggle();
+    });
+
     $('#select-user-content').change(function(){
         var options = getUrlParameters();
         options['user_sort'] = $(this).val();

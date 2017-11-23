@@ -12,6 +12,11 @@
     if(isset($_GET['user'])) {
         $user= $_GET['user'];
     }
+
+    $result = '';
+    if(isset($_GET['result']) && $_GET['result'] == 'failed') {
+        $result = 'Password Change Failed';
+    }
     
     $image_error = '';
     if($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -89,6 +94,7 @@
             </div>
     </div>
     <div class="content" id="content-user">
+        <div class="error"><span><?php global $result; if(strlen($result) > 0){echo $result;}?></span></div>
         <div class="user-outer-wrapper">
             <div class="user-wrapper">
                 <div class="user-img-wrapper">
@@ -109,7 +115,9 @@
                         <?php
                             global $user; 
                             echo generate_delete_user_btn($user);
+                            echo generate_change_pass_btn($user);
                         ?>
+                        
                     <?php
                         global $image_error; 
                         if(!empty($image_error)) {
@@ -144,7 +152,13 @@
         if($del) {
             echo $del;
         }
+
+        $pass = generate_change_pass_modal($user);
+        if($pass) {
+            echo $pass;
+        }
     ?>
+    
 
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"
     integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="

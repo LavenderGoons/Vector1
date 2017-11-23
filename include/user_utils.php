@@ -44,17 +44,43 @@ function generate_delete_user_btn($username) {
     }
 }
 
+function generate_change_pass_btn($username) {
+    if($username === $_SESSION['username']) {
+        return '<button type="button" name="change-pass" id="change-pass">Change Password</button>';
+    }
+}
+
 function generate_delete_user_modal($username) {
     if($username === $_SESSION['username']) {
         return '<div id="delete-user-blanket" class="blanket"></div><div class="form-modal" id="delete-user-modal">
             <form action="include/controller.php" method="post">
                 <label for="username">Confirm Username</label>
-                <input type="text" name="conf-username" id="confirm-user-input">
+                <input type="text" name="conf_username" id="confirm-user-input">
                 <input type="submit" value="Submit">
             </form>
         </div>';
     }
-    return false;
+}
+
+function generate_change_pass_modal($username) {
+    if($username === $_SESSION['username']) {
+        return '<div id="change-pass-blanket" class="blanket"></div><div class="form-modal" id="change-pass-modal">
+            <form action="include/controller.php" method="post">
+            <label for="pass_username">Username</label>
+            <input type="text" name="pass_username">
+            <label for="email">Email</label>
+            <input type="email" name="email">
+            <label for="first_name">First Name</label>
+            <input type="text" name="first_name">
+            <label for="last_name">Last Name</label>
+            <input type="text" name="last_name">
+            <label for="new_password">New Password</label>
+            <input type="password" name="new_password">
+            <input type="hidden" name="change_password" value="change_password"/>
+            <input type="submit" value="Submit">
+        </form>
+    </div>';
+    }
 }
 
 function update_user_image($new_image, $username) {
