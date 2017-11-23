@@ -60,7 +60,9 @@ $(function(){
         options['page'] = getPageName();
         options['limit'] = 50;
         options['category'] = 'all';
-        options['user'] = '';
+        if(!options['user']) {
+            options['user'] = '';
+        }
         var data = {"command":"load_posts", "options":options};
         get_more_posts('.user-content-box', data, true);
     });
