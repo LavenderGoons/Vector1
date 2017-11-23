@@ -49,9 +49,7 @@
     }
 
     function get_preview_content($options) {
-        $val = array();
-        $val['content'] = get_post_content($options);
-        return $val;
+        return get_post_content($options);
     }
 
     function signout() {

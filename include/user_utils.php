@@ -74,13 +74,13 @@ function get_user_posts($username) {
     $user_id = get_user_id($username);
 
     $sql = "SELECT u.username, u.image_url AS user_image, fp.post_id, fp.title, fp.category, fp.image_url AS post_image, fp.post_date, fp.content"; 
-    $sql .= " FROM users u JOIN forum_posts fp on u.id = fp.user_id WHERE fp.user_id = $user_id";
+    $sql .= " FROM users u JOIN forum_posts fp on u.id = fp.user_id WHERE fp.user_id = $user_id ORDER BY post_id DESC";
 
     $str = '';
     $result = mysqli_query($conn, $sql);
     if(gettype($result) == 'object') {
         while($row = mysqli_fetch_assoc($result)) {
-            $str .= generate_post_html($row['post_id'], $row['username'], $row['title'], $row['category'], $row['content'], $row['user_image'], $row['post_image'], $row['post_date'], false);
+            $str .= generate_post_html($row['post_id'], $row['username'], $row['title'], $row['category'], false, $row['user_image'], null, $row['post_date'], false);
         }
     }
     return $str;

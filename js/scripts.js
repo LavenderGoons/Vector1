@@ -161,7 +161,8 @@ function getUrlParameters() {
 function get_post_content(post_id, post_area) {
     $.post('include/controller.php', {"command":"get_content", "options":{"post_id":post_id}}, function(data){
         var objData = JSON.parse(data);
-        $(post_area).html(objData.content);
+        $(post_area).find('p').html(objData.content);
+        $(post_area).find('img').attr('src', objData.image_url);
     });
 }
 
@@ -175,7 +176,7 @@ function load_section_listeners() {
             var post_id = $(this).attr('data-post-id');
             preview.toggle();
             if($('.forum-section[data-post-id='+post_id+'] > .preview-content > p').html().length == 0) {
-                get_post_content(post_id, '.forum-section[data-post-id='+post_id+'] > .preview-content > p');
+                get_post_content(post_id, '.forum-section[data-post-id='+post_id+'] > .preview-content');
             }
         }
     });

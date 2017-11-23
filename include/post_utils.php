@@ -60,9 +60,7 @@ function generate_post_html($post_id, $username, $title, $category, $content, $u
     } else {
         $str .= '<div class="preview-content">';
     }
-    if(isset($post_image)) {
-        $str .= '<img class="post-img" src="'.$post_image.'"></img>';
-    }
+    $str .= '<img class="post-img" src="'.$post_image.'"></img>';
     $str .= '<p>';
     if(isset($content) && $content) {
         $str .= $content;
@@ -99,7 +97,7 @@ function get_forum_posts($post_category, $options) {
     $post_category = strtolower($post_category);
 
     //TODO Remove the content column and do an AJAX request on the client side.
-    $sql = "SELECT u.username, u.image_url AS user_image, fp.post_id, fp.title, fp.category, fp.image_url AS post_image, fp.post_date"; //, fp.content
+    $sql = "SELECT u.username, u.image_url AS user_image, fp.post_id, fp.title, fp.category, fp.post_date";
     $sql .= " FROM users u JOIN forum_posts fp on u.id = fp.user_id";
     // Filter the posts by category, but not all
     if($post_category != "all") {
@@ -128,7 +126,7 @@ function get_forum_posts($post_category, $options) {
     $result = mysqli_query($conn, $sql);
     $str = '';
     while($row = mysqli_fetch_assoc($result)) {
-        $str .= generate_post_html($row['post_id'], $row['username'], $row['title'], $row['category'], false, $row['user_image'], $row['post_image'], $row['post_date'], false);
+        $str .= generate_post_html($row['post_id'], $row['username'], $row['title'], $row['category'], false, $row['user_image'], null, $row['post_date'], false);
     }
     return $str;
 }
@@ -191,13 +189,16 @@ function get_post_comments($options) {
 
 function get_post_content($options) {
     global $conn;
-    $sql = "SELECT content FROM forum_posts WHERE post_id = ".$options['post_id'];
+    $sql = "SELECT content, image_url FROM forum_posts WHERE post_id = ".$options['post_id'];
     $str = '';
+    $val = array();
     $result = mysqli_query($conn, $sql);
     if(gettype($result) == 'object') {
         $row = mysqli_fetch_assoc($result);
-        $str = $row['content'];
+        $val['content'] = $row['content'];
+        $val['image_url'] = $row['image_url'];
+
     }
-    return $str;
+    return $val;
 }
 ?>
