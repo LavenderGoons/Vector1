@@ -77,9 +77,6 @@
 					window.setInterval(function(){
 						charCounter++;
 						if (charCounter % 8 == 0) {
-							// var title1 = document.getElementById('title1');
-							// title1.innerHTML = '登录';
-							// title1.classList.add('chinese-title');
 							document.getElementById('title2').innerHTML = '寄存器';
 							document.getElementById('title3').innerHTML = '寄存器';
 						} else if (document.getElementById('title2').innerHTML != 'Sign Up') {

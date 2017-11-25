@@ -54,7 +54,7 @@
 </head>
 <body>
     <nav id="top-nav" class="navbar navbar-dark fixed-top">
-        <a href="index.html" class="navbar-brand">
+        <a href="index.php" class="navbar-brand">
             <img src="img/skull_icon.png" alt="" width="40" height="40">
         </a>
         <div id="user-ref">

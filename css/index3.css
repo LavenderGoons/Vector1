@@ -81,13 +81,23 @@ body {
     display: none;
 }
 
-div#user-ref {
+div#user-ref, div#user-ref:hover {
     color: white;
     font-size: 1.25rem;
     padding: 5px 0px;
     display: flex;
     align-items: center;
     cursor: pointer;
+    text-decoration: none;
+}
+
+a#user-ref {
+    text-decoration: none;
+}
+
+a#user-ref:hover, a#user-ref:hover > {
+    text-decoration: none;
+    color: inherit;
 }
 
 #signout {
@@ -220,6 +230,15 @@ section.forum-section {
 .post-category::before {
     content: 'In: ';
     font-weight: bold;
+}
+
+/* ERROR */
+.error {
+    color: #ed2939;
+}
+
+div.error {
+   display: block;
 }
 
 /* PREVIEW */

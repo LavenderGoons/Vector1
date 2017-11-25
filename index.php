@@ -11,7 +11,7 @@
 
     $post_error = $post_result = '';
     $title = $category = $content = $image_url = '';
-    //TODO show error messages
+    
     $title_error = $content_error = '';
     if($_SERVER['REQUEST_METHOD'] == 'POST') {
         $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
@@ -58,14 +58,16 @@
 </head>
 <body>
     <nav id="top-nav" class="navbar navbar-dark fixed-top">
-        <a href="index.html" class="navbar-brand">
+        <a href="index.php" class="navbar-brand">
             <!-- Logo Image -->
             <img src="img/skull_icon.png" alt="" width="40" height="40">
         </a>
-        <div id="user-ref">
-            <img src=<?php echo get_user_image(); ?> alt="" width="40" height="40">
-            <span><?php if(isset($_SESSION['username'])) {echo $_SESSION['username'];} ?></span>
-        </div>
+        <a id="user-ref" href=<?php if(isset($_SESSION['username'])) {echo '"user.php?user='.$_SESSION['username'].'"';} ?>>
+            <div id="user-ref">
+                <img src=<?php echo get_user_image(); ?> alt="" width="40" height="40">
+                <span><?php if(isset($_SESSION['username'])) {echo $_SESSION['username'];} ?></span>
+            </div>
+        </a>
         <button class="navbar-toggler navbar-toggler-right" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -99,6 +101,8 @@
             </div>
     </div>
     <div class="content" id="content-index">
+        <?php global $content_error; if(strlen($content_error) > 0){echo '<div class="error">'.$content_error.'</div>'; $content_error = '';}?>
+        <?php global $title_error; if(strlen($title_error) > 0){echo '<div class="error">'.$title_error.'</div>'; $title_error = '';}?>
         <div id="content-header">
             <button id="new-topic-btn">New</button>
         </div>

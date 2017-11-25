@@ -96,7 +96,6 @@ function get_forum_posts($post_category, $options) {
 
     $post_category = strtolower($post_category);
 
-    //TODO Remove the content column and do an AJAX request on the client side.
     $sql = "SELECT u.username, u.image_url AS user_image, fp.post_id, fp.title, fp.category, fp.post_date";
     $sql .= " FROM users u JOIN forum_posts fp on u.id = fp.user_id";
     // Filter the posts by category, but not all
@@ -146,7 +145,7 @@ function get_post_and_comments($post_id_in) {
     $sql = "SELECT c.comment_id, c.user_id, c.post_id, c.content, c.comment_date, c.image_url AS comment_image, u.username, u.image_url AS user_image";
     $sql .= " FROM comments c JOIN users u ON c.user_id = u.id WHERE post_id = $post_id ORDER BY c.comment_id DESC LIMIT 10";
     $row = null;
-    //TODO add limits to comment fetch
+    
     $result = mysqli_query($conn, $sql);
     if(gettype($result) == 'object') {
         while($row = mysqli_fetch_assoc($result)) {

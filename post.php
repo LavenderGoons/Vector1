@@ -17,7 +17,7 @@
 
     //Create comment
     $content = $image_url = '';
-    //TODO show error messages
+    
     $content_error = '';
     if($_SERVER['REQUEST_METHOD'] == 'POST') {
         $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
@@ -60,7 +60,7 @@
 </head>
 <body>
     <nav id="top-nav" class="navbar navbar-dark fixed-top">
-        <a href="index.html" class="navbar-brand">
+        <a href="index.php" class="navbar-brand">
             <img src="img/skull_icon.png" alt="" width="40" height="40">
         </a>
         <div id="user-ref">
@@ -100,6 +100,7 @@
             </div>
     </div>
     <div class="content" id="content-post">
+        <?php global $content_error; if(strlen($content_error) > 0){echo '<div class="error">'.$content_error.'</div>'; $content_error = '';}?>
         <div id="content-header">
             <button id="new-comment-btn">Reply</button>
         </div>
@@ -127,7 +128,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
     integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
     crossorigin="anonymous"></script>
-    <script src="../js/bootstrap.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
 <script src="js/scripts.js"></script>
 </body>
 </html>
