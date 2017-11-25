@@ -43,12 +43,12 @@
     <link rel="stylesheet" href="./css/animation.css"/>
     <link rel="stylesheet" href="./css/font-awesome.min.css"/>
     
-    <link rel="apple-touch-icon" sizes="180x180" href="./img/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="./img/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="./img/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="./img/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./img/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./img/favicons/favicon-16x16.png">
     <link rel="icon" type="image/x-icon" href="./img/favicons/favicon.ico">
-    <link rel="manifest" href="./img/manifest.json">
-    <link rel="mask-icon" href="./img/safari-pinned-tab.svg" color="#1976D2">
+    <link rel="manifest" href="./img/favicons/manifest.json">
+    <link rel="mask-icon" href="./img/favicons/safari-pinned-tab.svg" color="#1976D2">
     <meta name="theme-color" content="#ffffff">
     
     <title>Login</title>
