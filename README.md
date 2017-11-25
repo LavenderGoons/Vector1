@@ -56,3 +56,9 @@ CREATE TABLE `comments` (
  KEY `post_id` (`post_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=71 DEFAULT CHARSET=latin1
 ```
+
+### Chmod Commands
+```
+find ./ -type f -exec chmod 644 {} \;
+find ./ -type d -exec chmod 711 {} \;
+```
