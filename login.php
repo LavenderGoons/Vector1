@@ -18,12 +18,18 @@
 
         if(empty($username)) {
             $user_error = 'Please Enter A Username';
+        } else if(strlen($username) > 20) {
+            $user_error = 'Username Is Too Long';
         }
+
         if(empty($password)) {
             $pass_error = 'Please Enter A Password';
         }
+
         if(empty($email)) {
             $email_error = 'Please Enter A Email';
+        } else if(strlen($email) > 50) {
+            $user_error = 'Email Is Too Long';
         }
 
         if(empty($user_error) && empty($pass_error) && empty($email_error)) {
@@ -81,15 +87,15 @@
                 <form action="" method="post">
                     <label for="username">Username</label>
                     <input type="text" name="username" id="username-input" class="input" maxlength="20" <?php if(!empty($username)){echo "value='$username'";} ?>></input>
-                    <?php if(!empty($user_error)){echo '<span id="user-error" class="input-error">Please Enter Username</span>';}?>
+                    <?php global $user_error; if(!empty($user_error)){echo '<span id="user-error" class="input-error">'.$user_error.'</span>';}?>
 
                     <label for="email">Email</label>
                     <input type="email" name="email" id="email-input" class="input" maxlength="50"></input>
-                    <?php if(!empty($email_error)){echo '<span id="email-error" class="input-error">Please Enter Email</span>';}?>
+                    <?php global $email_error; if(!empty($email_error)){echo '<span id="email-error" class="input-error">'.$email_error.'</span>';}?>
 
                     <label for="password">Password</label>
                     <input type="password" name="password" id="password-input" class="input"></input>
-                    <?php if(!empty($pass_error)){echo '<span id="password-error" class="input-error">Please Enter Password</span>';}?>
+                    <?php global $pass_error; if(!empty($pass_error)){echo '<span id="password-error" class="input-error">'.$pass_error.'</span>';}?>
 
                     <input type='submit' name='submit' value="Login" class="input"></input>
                     <button type='button' name='signup' class="input"><a class='fake-button' href="signup.php">Sign Up</a></button>

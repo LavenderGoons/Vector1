@@ -75,6 +75,9 @@ $(function(){
     //When scroll is near bottom load more comments or posts
     var nearBottom = false;
     $('.content').scroll(function () {
+        if($(this).attr('id') == 'content-user') {
+            return false;
+        }
         if(($(this).scrollTop() + $('.content').outerHeight() >= document.getElementsByClassName('content')[0].scrollHeight - 50) && !nearBottom) {
             nearBottom = true;
             var options = getUrlParameters();

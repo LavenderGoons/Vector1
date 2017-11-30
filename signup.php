@@ -5,7 +5,7 @@
     }
     $signup_error = '';
     $username = $password = $email = $first_name = $last_name = $image_url = '';
-    $user_error = $pass_error = $email_error = $first_name_error = $last_name_error = '';
+    $user_error = $pass_error = $email_error = $first_name_error = $last_name_error = $image_error = '';
 
     if($_SERVER['REQUEST_METHOD'] == 'POST') {
         $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
@@ -19,25 +19,43 @@
         // Validate all inputs
         if(empty($username)) {
             $user_error = 'Please Enter A Username';
+        } else if(strlen($username) > 20) {
+            $user_error = 'Username Is Too Long';
         }
+
         if(empty($password)) {
             $pass_error = 'Please Enter A Password';
         }
+
         if(empty($email)) {
             $email_error = 'Please Enter A Email';
+        } else if(strlen($email) > 50) {
+            $email_error = 'Email Is Too Long';
         }
+
         if(empty($first_name)) {
             $first_name_error = 'Please Enter A First Name';
+        } else if(strlen($first_name) > 30) {
+            $first_name_error = 'First Name Is Too Long';
         }
+
         if(empty($last_name)) {
             $last_name_error = 'Please Enter A Last Name';
+        } else if(strlen($last_name) > 40) {
+            $last_name_error = 'Last Name Is Too Long';
+        }
+
+        if(!empty($image_url) && strlen($image_url) >= 150) {
+            $image_error = 'Image URL Is Too Long';
+        } else if(!filter_var($image_url, FILTER_VALIDATE_URL)) {
+            $image_error = 'Image URL Is Not Valid';
         }
 
         //Hash password
         $pass_hash = password_hash($password, PASSWORD_DEFAULT);
 
         //Check and create user
-        if(empty($user_error) && empty($pass_error) && empty($email_error) && empty($first_name_error) && empty($last_name_error)) {
+        if(empty($user_error) && empty($pass_error) && empty($email_error) && empty($first_name_error) && empty($last_name_error) && empty($image_error)) {
             $signup_error = create_user($username, $pass_hash, $email, $first_name, $last_name, $image_url);   
         }
     }
@@ -97,24 +115,24 @@
 					<div class="form-column">
                         <label for="username">Username</label>
                         <input type="text" name="username" id="username-input" class="input-small" maxlength="20"></input>
-                        <?php if(!empty($user_error)){echo '<span id="user-error" class="input-error">Please Enter Username</span>';}?>
-
+                        <?php global $user_error; if(!empty($user_error)){echo '<span id="user-error" class="input-error">'.$user_error.'</span>';}?>
+                        
                         <label for="first-name">First Name</label>
                         <input type="text" name="first_name" id="first-name-input" class="input-small" maxlength="30"></input>
-                        <?php if(!empty($first_name_error)){echo '<span id="first-name-error" class="input-error">Please Enter First Name</span>';}?>
+                        <?php global $first_name_error; if(!empty($first_name_error)){echo '<span id="first-name-error" class="input-error">'.$first_name_error.'</span>';}?>
 
                         <label for="last-name">Last Name</label>
                         <input type="text" name="last_name" id="last-name-input" class="input-small" maxlength="40"></input>
-                        <?php if(!empty($last_name_error)){echo '<span id="last-name-error" class="input-error">Please Enter Last Name</span>';}?>
+                        <?php global $last_name_error; if(!empty($last_name_error)){echo '<span id="last-name-error" class="input-error">'.$last_name_error.'</span>';}?>
 					</div>
 					<div class="form-column">
                         <label for="password">Password</label>
                         <input type="password" name="password" id="password-input" class="input-small"></input>
-                        <?php if(!empty($pass_error)){echo '<span id="password-error" class="input-error">Please Enter Password</span>';}?>
+                        <?php global $pass_error; if(!empty($pass_error)){echo '<span id="password-error" class="input-error">'.$pass_error.'</span>';}?>
                         
                         <label for="email">Email</label>
                         <input type="email" name="email" id="email-input" class="input-small" maxlength="50"></input>
-                        <?php if(!empty($email_error)){echo '<span id="email-error" class="input-error">Please Enter Email</span>';}?>
+                        <?php global $email_error; if(!empty($email_error)){echo '<span id="email-error" class="input-error">'.$email_error.'</span>';}?>
                         <input type="hidden" id="image_url" name="image_url" value="img/skull_icon.png" maxlength="120"></input>
                         
                         <label for="submit">&nbsp;</label>
@@ -126,6 +144,9 @@
                 global $signup_error;
                 if(!empty($signup_error)) {
                     echo '<span class="input-error" id="signup-error">'. $signup_error .'</span>';
+                }
+                if(!empty($image_error)) {
+                    echo '<span class="input-error" id="signup-error">'. $image_error .'</span>';
                 }
                 ?>
 			</div>

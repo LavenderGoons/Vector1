@@ -82,6 +82,9 @@
         $pass_hash = password_hash($new_password, PASSWORD_DEFAULT);
         $sql = "SELECT email, first_name, last_name FROM users WHERE username = '$username'";
         $result = mysqli_query($conn, $sql);
+        if(gettype($result) != 'object') {
+            return 0;
+        }
         $row = mysqli_fetch_assoc($result);
         if($row['email'] != $email || $row['first_name'] != $first_name || $row['last_name'] != $last_name) {
             return 0;

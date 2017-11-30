@@ -23,6 +23,13 @@
         $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
         if($_SESSION['username'] == $user) {
             $new_image = $_POST['image'];
+            if(!empty($new_image) && strlen($new_image) > 150) {
+                $image_error = 'New Image URL Is Too Long';
+                exit();
+            } else if(!filter_var($image_url, FILTER_VALIDATE_URL)) {
+                $image_error = 'Image URL Is Not Valid';
+                exit();
+            }
             $result = update_user_image($new_image, $user);
             if(!$result) {
                 $image_error = 'Problem Updating Image';

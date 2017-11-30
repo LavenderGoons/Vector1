@@ -18,7 +18,7 @@
     //Create comment
     $content = $image_url = '';
     
-    $content_error = '';
+    $content_error = $image_error = '';
     if($_SERVER['REQUEST_METHOD'] == 'POST') {
         $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
         $image_url = trim($_POST['image_url']);
@@ -26,9 +26,17 @@
 
         if(empty($content)) {
             $content_error = 'Please Enter Content';
+        } else if(strlen($content) > 4500) {
+            $content_error = 'Content Is Too Long';
         }
 
-        if(empty($content_error)) {
+        if(!empty($image_url) && strlen($image_url) > 150) {
+            $image_error = 'Image URL Is Too Long';
+        } else if(!filter_var($image_url, FILTER_VALIDATE_URL)) {
+            $image_error = 'Image URL Is Not Valid';
+        }
+
+        if(empty($content_error) && empty($image_error)) {
             $comment_result = create_comment($_SESSION['username'], $post_id, $image_url, $content);
             //Reset values
             if($comment_result) {
@@ -101,6 +109,7 @@
     </div>
     <div class="content" id="content-post">
         <?php global $content_error; if(strlen($content_error) > 0){echo '<div class="error">'.$content_error.'</div>'; $content_error = '';}?>
+        <?php global $image_error; if(strlen($image_error) > 0){echo '<div class="error">'.$image_error.'</div>'; $image_error = '';}?>
         <div id="content-header">
             <button id="new-comment-btn">Reply</button>
         </div>

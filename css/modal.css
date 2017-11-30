@@ -22,6 +22,8 @@
     padding: 10px;
     display: none;
     flex-direction: column;
+    max-height: calc(100vh - 50px);
+    overflow-y: auto;
 }
 
 .form-modal > form {

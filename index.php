@@ -9,7 +9,7 @@
         $post_category = $_GET['category'];
     }
 
-    $post_error = $post_result = '';
+    $post_error = $post_result = $image_error = '';
     $title = $category = $content = $image_url = '';
     
     $title_error = $content_error = '';
@@ -24,12 +24,23 @@
         // Validate all inputs
         if(empty($title)) {
             $title_error = 'Please Enter A Title';
-        }
-        if(empty($content)) {
-            $content_error = 'Please Enter Some Content';
+        } else if(strlen($title) > 140) {
+            $title_error = 'Title Is Too Long';
         }
 
-        if(empty($title_error) && empty($content_error)) {
+        if(empty($content)) {
+            $content_error = 'Please Enter Some Content';
+        } else if(strlen($content) > 4500) {
+            $title_error = 'Content Is Too Long';
+        }
+
+        if(!empty($image_url) && strlen($image_url) > 150) {
+            $image_error = 'Image URL Is Too Long';
+        } else if(!filter_var($image_url, FILTER_VALIDATE_URL)) {
+            $image_error = 'Image URL Is Not Valid';
+        }
+
+        if(empty($title_error) && empty($content_error) && empty($image_error)) {
             $post_result =  create_forum_post($_SESSION['username'], $title, $image_url, $category, $content);
         }
     }
@@ -103,6 +114,7 @@
     <div class="content" id="content-index">
         <?php global $content_error; if(strlen($content_error) > 0){echo '<div class="error">'.$content_error.'</div>'; $content_error = '';}?>
         <?php global $title_error; if(strlen($title_error) > 0){echo '<div class="error">'.$title_error.'</div>'; $title_error = '';}?>
+        <?php global $image_error; if(strlen($image_error) > 0){echo '<div class="error">'.$image_error.'</div>'; $image_error = '';}?>
         <div id="content-header">
             <button id="new-topic-btn">New</button>
         </div>
