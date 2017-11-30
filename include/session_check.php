@@ -57,13 +57,13 @@ function get_user_token_and_image($username) {
 
 function check_cookie($cookie) {
     list($username, $token, $hash) = explode(':', $cookie);
-    if(!hash_equals(hash_hmac("sha256", $username .':'.$token, HMAC), $hash)) {
+    if(!hash_equals2(hash_hmac("sha256", $username .':'.$token, HMAC), $hash)) {
         return false;
     }
     $user_array = get_user_token_and_image($username);
     $fetched_token = $user_array['token'];
     $image_url = $user_array['image_url'];
-    if($fetched_token && hash_equals($fetched_token, $token)) {
+    if($fetched_token && hash_equals2($fetched_token, $token)) {
         $_SESSION['username'] = $username;
         $_SESSION['image_url'] = $image_url;
         return true;
