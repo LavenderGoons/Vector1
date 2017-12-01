@@ -45,7 +45,7 @@ html, body {
     flex-direction: column;
 }
 
-.input {
+.input, .fake-button {
     display: block;
     margin: 10px;
     height: 50px;
@@ -56,7 +56,7 @@ input[type="password"]:focus, input[type="text"]:focus, input[type="email"]:focu
     outline-color: #ed2939;
 }
 
-input[type="submit"], button.input  {
+input[type="submit"], button.input, .fake-button  {
     margin-top: 15px; 
     height: 40px;
     font-size: 1.25rem;
@@ -68,7 +68,7 @@ input[type="submit"], button.input  {
     padding: 0px;
 }
 
-input[type="submit"]:hover, button.input:hover, input[type="submit"]:focus, button.input:focus {
+input[type="submit"]:hover, a.fake-button:hover, input[type="submit"]:focus, a.fake-button:focus {
     outline: none;
     background-color: #ed2939;
     color: white;
@@ -80,15 +80,9 @@ input[type="submit"]:focus {
 }
 
 a.fake-button {
-    display: block;
-    color: black;
+    text-align: center;
     text-decoration: none;
-    transition: all .25s ease;
-    height: 35px; /* The a tag doesn't full the button completely */
-}
-
-a.fake-button:hover, a.fake-button:hover {
-    color: white;
+    color: rgb(33, 37, 41);
 }
 
 label {

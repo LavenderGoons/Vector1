@@ -98,7 +98,7 @@
                     <?php global $pass_error; if(!empty($pass_error)){echo '<span id="password-error" class="input-error">'.$pass_error.'</span>';}?>
 
                     <input type='submit' name='submit' value="Login" class="input"></input>
-                    <button type='button' name='signup' class="input"><a class='fake-button' href="signup.php">Sign Up</a></button>
+                    <a class='fake-button' href="signup.php">Sign Up</a>
                 </form>
                 <?php
                 //display error when logging in

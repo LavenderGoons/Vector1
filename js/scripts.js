@@ -18,8 +18,8 @@ $(function(){
 
     //Display the image url modal
     $('.profile-img-wrapper, #profile-image-blanket').click(function(){
-        $('.blanket').toggle();
-        $('.form-modal').toggle();
+        $('#profile-image-blanket').toggle();
+        $('#image-url-modal').toggle();
     });
 
     $('.user-img-wrapper, #user-image-blanket').click(function(){
@@ -29,8 +29,8 @@ $(function(){
 
     //Get url from modal and update img/form input
     $('#image-url-btn').click(function () {
-        $('#blanket').toggle();
-        $('.form-modal').toggle();
+        $('#profile-image-blanket').toggle();
+        $('#image-url-modal').toggle();
         var img_url = $('#profile-image-input').val();
         $('#image_url').val(img_url);
         $('.profile-img-wrapper > img').attr('src', img_url);

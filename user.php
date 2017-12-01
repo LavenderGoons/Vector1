@@ -26,7 +26,7 @@
             if(!empty($new_image) && strlen($new_image) > 150) {
                 $image_error = 'New Image URL Is Too Long';
                 exit();
-            } else if(!empty($image_url) && !filter_var($image_url, FILTER_VALIDATE_URL)) {
+            } else if(!empty($image_url) && substr($image_url, 0, 3) != 'img' && !filter_var($image_url, FILTER_VALIDATE_URL)) {
                 $image_error = 'Image URL Is Not Valid';
                 exit();
             }
